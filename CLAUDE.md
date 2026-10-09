@@ -1,6 +1,6 @@
 # React Concepts Playground
 
-Public repo (github.com/deesha-tech/react-concepts-playground, MIT) of small runnable examples for Deesha Tech Academy's video series. Each `examples/NN-slug/` is a self-contained Vite + React 19 + React Router 8 + TypeScript strict project so StackBlitz can open the folder directly.
+Public repo (github.com/deesha-tech/react-concepts-playground, PolyForm Noncommercial 1.0.0) of small runnable examples for Deesha Tech Academy's video series. Each `examples/NN-slug/` is a self-contained Vite + React 19 + React Router 8 + TypeScript strict project so StackBlitz can open the folder directly.
 
 - Shared chrome (header menu, course promos, interview band, request timeline, code peek) lives in `shell/`. Edit it there, then run `npm run sync`; never edit `examples/*/src/shell/` by hand. CI fails if they drift.
 - Per-episode content (summary, steps, challenge, interview Q&A) is in `src/episode.ts`.

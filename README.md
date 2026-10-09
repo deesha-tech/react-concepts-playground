@@ -64,4 +64,12 @@ To add an example, copy an existing folder in `examples/`, change `src/episode.t
 
 ---
 
-<p align="center">MIT licensed · © 2026 <a href="https://www.deeshatechacademy.com/?utm_source=github&utm_medium=readme&utm_campaign=react-series">Deesha Tech Academy</a> · Talent needs direction.</p>
+## Licence
+
+These examples are for **learning and teaching**. You can read, run, change and share them for personal study, in classrooms and for any other non-commercial purpose. Using them in a paid course, product or service needs our written permission: contact@deeshatechacademy.com.
+
+Licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE).
+
+---
+
+<p align="center">© 2026 <a href="https://www.deeshatechacademy.com/?utm_source=github&utm_medium=readme&utm_campaign=react-series">Deesha Tech Academy</a> · Talent needs direction.</p>

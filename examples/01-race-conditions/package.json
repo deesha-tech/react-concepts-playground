@@ -2,7 +2,8 @@
   "name": "deesha-01-race-conditions",
   "private": true,
   "version": "1.0.0",
-  "description": "React Concepts Playground · Ep 01 · Race Conditions, by Deesha Tech Academy",
+  "description": "React Concepts Playground \u00b7 Ep 01 \u00b7 Race Conditions, by Deesha Tech Academy",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

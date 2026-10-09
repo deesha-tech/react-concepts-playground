@@ -2,7 +2,8 @@
   "name": "deesha-19-loaders-vs-useeffect",
   "private": true,
   "version": "1.0.0",
-  "description": "React Concepts Playground · Ep 19 · Loaders vs useEffect, by Deesha Tech Academy",
+  "description": "React Concepts Playground \u00b7 Ep 19 \u00b7 Loaders vs useEffect, by Deesha Tech Academy",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
