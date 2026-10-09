@@ -1,0 +1,29 @@
+name: Build examples
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  shell-in-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm run sync:check
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example: [01-race-conditions, 19-loaders-vs-useeffect]
+    defaults:
+      run:
+        working-directory: examples/${{ matrix.example }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --no-audit --no-fund
+      - run: npm run build

@@ -1,0 +1,9 @@
+{
+  "name": "react-concepts-playground",
+  "private": true,
+  "description": "Small, runnable React examples from the Deesha Tech Academy video series.",
+  "scripts": {
+    "sync": "node scripts/sync-shell.mjs",
+    "sync:check": "node scripts/sync-shell.mjs --check"
+  }
+}

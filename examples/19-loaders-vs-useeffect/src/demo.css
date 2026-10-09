@@ -1,0 +1,36 @@
+/* Styles for this example's mini store. Brand chrome lives in shell/shell.css. */
+.demo-tools { display: flex; align-items: center; gap: .6rem; font-size: .85rem; }
+.demo-tools select { font: inherit; padding: .3rem .4rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--white); }
+.demo-note { margin: 0; padding: .7rem 1rem; font-size: .88rem; border-top: 1px solid var(--rule); background: #fbfaf7; }
+.demo-note code { font-family: var(--font-mono); font-size: .85em; background: var(--paper); padding: .05rem .3rem; border-radius: 4px; }
+
+.browser { margin: 1rem; border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; background: var(--white); box-shadow: 0 8px 22px rgba(18,32,58,.07); }
+.browser-bar { display: flex; align-items: center; gap: .75rem; padding: .5rem .75rem; background: #eef0f4; border-bottom: 1px solid var(--rule); }
+.dots { display: inline-flex; gap: 5px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: #cfd4dd; display: block; }
+.dots i:first-child { background: #f2a097; } .dots i:nth-child(2) { background: #f4d27a; } .dots i:last-child { background: #9fd8a5; }
+.browser-url { flex: 1; font: .78rem var(--font-mono); color: var(--slate-strong); background: var(--white); border-radius: 6px; padding: .25rem .6rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.browser-progress { height: 3px; background: transparent; position: relative; overflow: hidden; }
+.browser-progress.is-loading::after { content: ''; position: absolute; inset: 0; width: 40%; background: var(--saffron); animation: pg-progress 1s ease-in-out infinite; }
+@keyframes pg-progress { from { transform: translateX(-100%); } to { transform: translateX(260%); } }
+.browser-page { padding: 1rem 1.1rem 1.2rem; min-height: 250px; }
+.back { display: inline-block; font-size: .85rem; font-weight: 600; margin-bottom: .75rem; text-decoration: none; }
+
+.shop-title { font-size: 1.05rem; margin-bottom: .75rem; }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .7rem; }
+.shop-card { display: grid; gap: .35rem; justify-items: center; text-align: center; padding: 1rem .6rem; border: 1px solid var(--rule); border-radius: 12px; text-decoration: none; color: var(--navy); font-weight: 600; font-size: .9rem; background: var(--paper); transition: transform .15s, border-color .15s; }
+.shop-card:hover { transform: translateY(-2px); border-color: var(--teal); }
+.shop-card-broken { border-style: dashed; color: var(--slate-strong); }
+.shop-emoji { font-size: 2.2rem; line-height: 1; }
+.shop-tip { font-size: .82rem; margin: .8rem 0 0; }
+.shop-hero { display: flex; gap: 1rem; align-items: center; }
+.shop-hero .shop-emoji { font-size: 3.2rem; background: var(--paper); border-radius: 14px; padding: .8rem; }
+.shop-hero h3 { font-size: 1.2rem; }
+.shop-hero p { margin: .2rem 0; }
+.shop-price { font-weight: 700; color: var(--teal-deep); }
+.shop-product h4 { font-family: var(--font-display); color: var(--navy); margin: 1rem 0 .4rem; font-size: .95rem; }
+.shop-reviews { margin: 0; padding: 0; list-style: none; display: grid; gap: .4rem; font-size: .88rem; }
+.shop-reviews strong { color: var(--saffron-deep); margin-right: .3rem; }
+.shop-loading { color: var(--slate-strong); font-size: .9rem; margin: .5rem 0; }
+.shop-problem { border: 1px solid #f3c4a8; background: #fff5ee; color: var(--bad); border-radius: 10px; padding: .75rem 1rem; }
+.shop-problem p { margin: .25rem 0 0; color: var(--charcoal); }
