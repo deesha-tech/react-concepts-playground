@@ -86,6 +86,37 @@ function CourseAd({ episode }: { episode: Episode }) {
   );
 }
 
+function InterviewBand({ episode }: { episode: Episode }) {
+  const iv = episode.interview;
+  if (!iv) return null;
+  return (
+    <section className="pg-interview" id="interview" aria-label="Interview question and answer">
+      <div className="pg-wrap">
+        <p className="pg-eyebrow pg-eyebrow-saffron">Asked in React interviews</p>
+        <h2 className="pg-iv-q">“{iv.question}”</h2>
+        <div className="pg-iv-grid">
+          <div className="pg-iv-answer">
+            <p className="pg-iv-label">A strong answer</p>
+            {iv.answer.map((para, i) => <p key={i}>{para}</p>)}
+          </div>
+          <div className="pg-iv-side">
+            <div className="pg-iv-short">
+              <p className="pg-iv-label">Say it in 30 seconds</p>
+              <p>{iv.short}</p>
+            </div>
+            {iv.followUps?.map((f) => (
+              <details className="pg-iv-follow" key={f.q}>
+                <summary><span className="pg-iv-label">Follow-up</span>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function PlaygroundShell({ episode, children }: { episode: Episode; children: ReactNode }) {
   return (
     <div className="pg">
@@ -99,6 +130,13 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
           <ul className="pg-chips">
             {episode.concepts.map((c) => <li key={c}>{c}</li>)}
           </ul>
+          {episode.interview && (
+            <a className="pg-iv-teaser" href="#interview">
+              <span className="pg-iv-teaser-tag">Interview question</span>
+              <span className="pg-iv-teaser-q">{episode.interview.question}</span>
+              <span className="pg-iv-teaser-link">Read the model answer ↓</span>
+            </a>
+          )}
         </div>
       </section>
 
@@ -118,6 +156,8 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
           <CourseAd episode={episode} />
         </aside>
       </main>
+
+      <InterviewBand episode={episode} />
 
       <section className="pg-more">
         <div className="pg-wrap">

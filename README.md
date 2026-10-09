@@ -31,6 +31,7 @@ Every example shows:
 - a **live demo** you can click through, with a toggle between the problem and the fix
 - a **network and render timeline**, so you can see what the code does, not just read about it
 - the **key lines of code**, highlighted
+- the **interview question** with a model answer, a 30-second version and follow-ups
 - a small **challenge** to try on your own
 
 ## Run an example locally

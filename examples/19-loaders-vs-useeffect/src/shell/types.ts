@@ -14,6 +14,15 @@ export interface Episode {
   steps: string[];
   /** A small task for the viewer, also in the README */
   challenge: string;
+  /** The interview question and a model answer, written the way you'd say it out loud */
+  interview?: {
+    question: string;
+    /** The full answer, one paragraph per idea */
+    answer: string[];
+    /** The same answer in about 30 seconds */
+    short: string;
+    followUps?: { q: string; a: string }[];
+  };
   /** The episode video, once published (the menu hides it while empty) */
   videoUrl?: string;
 }
