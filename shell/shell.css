@@ -244,3 +244,15 @@ html { scroll-behavior: smooth; }
 .code, .code * { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; } /* keep => and !== as typed */
 .code .k { color: #7cc4ff; } .code .s { color: #f5c97a; } .code .c { color: #7f8ba3; font-style: italic; } .code .f { color: #8ee6c4; }
 .code mark { background: rgba(227,155,44,.22); color: inherit; border-radius: 3px; }
+
+/* Video capture spotlight (only with ?capture in the URL; see capture.ts) */
+.cap-hole {
+  position: fixed; z-index: 60; pointer-events: none; opacity: 0; border-radius: 14px;
+  box-shadow: 0 0 0 9999px rgba(11, 16, 32, .58), 0 0 0 3px var(--saffron), 0 0 30px 6px rgba(227, 155, 44, .45);
+  transition: left .45s cubic-bezier(.2,.8,.2,1), top .45s cubic-bezier(.2,.8,.2,1), width .45s cubic-bezier(.2,.8,.2,1), height .45s cubic-bezier(.2,.8,.2,1), opacity .3s;
+}
+.cap-label {
+  position: fixed; z-index: 61; pointer-events: none; opacity: 0; white-space: nowrap;
+  background: var(--saffron); color: var(--navy); font: 800 16px var(--font-sans); padding: 6px 14px; border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25); transition: left .45s, top .45s, opacity .3s;
+}

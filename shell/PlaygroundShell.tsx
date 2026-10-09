@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { BRAND, FEATURED_COURSE, OFFERINGS, tracked, whatsappLink } from './brand';
 import type { Episode } from './types';
+import { installCapture } from './capture';
 import logoLight from './logo-light.png';
 import './shell.css';
 
@@ -118,6 +119,7 @@ function InterviewBand({ episode }: { episode: Episode }) {
 }
 
 export function PlaygroundShell({ episode, children }: { episode: Episode; children: ReactNode }) {
+  useEffect(() => { installCapture(); }, []);
   return (
     <div className="pg">
       <TopBar episode={episode} />

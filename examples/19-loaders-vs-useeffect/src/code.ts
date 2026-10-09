@@ -36,6 +36,7 @@ export async function productLoader({ params, request }) {
 }
 
 export function SeniorProductPage() {
+  // no useState · no useEffect · no loading flag
 !  const product = useLoaderData<typeof productLoader>(); // already here
   return <ProductView product={product}><Outlet /></ProductView>;
 }

@@ -20,18 +20,19 @@ function highlight(line: string): ReactNode[] {
   return out;
 }
 
-/** Shows the key lines of the pattern. Lines that start with "!" are highlighted. */
+/** Shows the key lines of the pattern. Lines that start with "!" are highlighted.
+ *  data-code (the file name) and data-ln (1-based line) let video capture spotlight exact lines. */
 export function CodePeek({ title, file, code }: { title: string; file: string; code: string }) {
   const lines = code.replace(/^\n+|\n\s*$/g, '').split('\n');
   return (
-    <section className="demo-card" aria-label={title}>
+    <section className="demo-card" aria-label={title} data-code={file}>
       <div className="demo-head"><h2>{title}</h2><span className="muted" style={{ fontSize: '.78rem', fontFamily: 'var(--font-mono)' }}>{file}</span></div>
       <pre className="code">
         {lines.map((l, i) => {
           const hot = l.startsWith('!');
           const text = hot ? l.slice(1) : l;
           const body = text ? highlight(text) : ' ';
-          return <div key={i}>{hot ? <mark>{body}</mark> : body}</div>;
+          return <div key={i} data-ln={i + 1}>{hot ? <mark>{body}</mark> : body}</div>;
         })}
       </pre>
     </section>
