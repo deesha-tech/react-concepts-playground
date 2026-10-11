@@ -13,6 +13,22 @@ export const EPISODE: Episode = {
     'Open a product and click "All products" before it loads. Only the senior version cancels the request.',
     'Open "A product that doesn\'t exist" in both modes to compare error handling.',
   ],
+  challenges: [
+    { level: 'Warm-up', text: 'Set Network to "Slow" and open the same product in both modes. Which one feels better to use, and why?' },
+    { level: 'Core', text: 'Add a third request, "related products", as another nested route with its own loader. The total time should stay the same in senior mode. Then try it in junior mode.' },
+    { level: 'Stretch', text: 'Make the reviews non-blocking: return their promise from the loader without awaiting it, and render it with <Suspense> and <Await>. The product should appear first.' },
+  ],
+  tour: [
+    { target: '.seg', title: 'Two ways to load data', text: 'This switch flips between the useEffect version (junior) and the React Router loader version (senior).' },
+    { target: 'a.shop-card', title: 'Open a product', text: 'Click this product. The data comes live from DummyJSON.', action: 'click', after: 2200 },
+    { target: "section[aria-label='Network and render timeline']", title: 'See the waterfall', text: 'Every request is a bar. The reviews only start after the product arrives: one after another. That staircase is a request waterfall.' },
+    { target: '.seg button:nth-of-type(2)', title: 'Now the loader version', text: 'Switch to the senior version. It reopens the same product.', action: 'click', after: 1600 },
+    { target: "section[aria-label='Network and render timeline']", title: 'Parallel, from the click', text: 'Both requests now start the moment you click, side by side. Same data, roughly half the wait.' },
+    { target: '.demo-card[data-code]', title: 'The code that makes the difference', text: 'The highlighted lines are the pattern: a loader on the route, and useLoaderData in the component. No useState, no useEffect.' },
+    { target: '.pg-challenge', title: 'Your turn', text: 'Pick a challenge and edit the code in StackBlitz. The app reloads as you type.' },
+    { target: '.pg-iv-teaser', title: 'Ready for the interview', text: 'Finally, read how to explain this in an interview: a model answer, a 30-second version and follow-ups.' },
+    { target: '[data-stage="try"]', title: 'Over to you 🎮', text: 'Now play with it yourself: flip the toggle, try different products or searches, change things and break them. Watch the timeline every time.' },
+  ],
   challenge: 'Add a third request, "GET /products/:id/related", as another nested route with its own loader. Confirm in the timeline that the total time stays the same in senior mode, then try it in junior mode.',
   interview: {
     question: 'How do you load the data a page needs in React? Would you fetch it in useEffect?',

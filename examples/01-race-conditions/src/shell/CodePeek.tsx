@@ -25,8 +25,8 @@ function highlight(line: string): ReactNode[] {
 export function CodePeek({ title, file, code }: { title: string; file: string; code: string }) {
   const lines = code.replace(/^\n+|\n\s*$/g, '').split('\n');
   return (
-    <section className="demo-card" aria-label={title} data-code={file}>
-      <div className="demo-head"><h2>{title}</h2><span className="muted" style={{ fontSize: '.78rem', fontFamily: 'var(--font-mono)' }}>{file}</span></div>
+    <section className="demo-card" aria-label={title} data-code={file} data-stage="read">
+      <div className="demo-head"><span className="stage-tag">3 · Read it</span><h2>{title}</h2><span className="muted" style={{ fontSize: '.78rem', fontFamily: 'var(--font-mono)' }}>{file}</span></div>
       <pre className="code">
         {lines.map((l, i) => {
           const hot = l.startsWith('!');

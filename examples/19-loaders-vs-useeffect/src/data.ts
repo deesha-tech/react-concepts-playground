@@ -1,20 +1,11 @@
-export interface Product { id: string; name: string; emoji: string; price: number; description: string }
+// Real products from DummyJSON (https://dummyjson.com), the same API the course app uses.
+export interface ProductSummary { id: string; name: string; image: string }
+export interface Product extends ProductSummary { price: number; brand?: string; description: string }
 export interface Review { id: string; author: string; rating: number; text: string }
 
-export const PRODUCTS: Product[] = [
-  { id: '1', name: 'Trail Running Shoes', emoji: '👟', price: 4299, description: 'Light, grippy and ready for wet trails.' },
-  { id: '2', name: 'Noise-cancelling Headphones', emoji: '🎧', price: 8999, description: 'Thirty hours of quiet, on a single charge.' },
-  { id: '3', name: 'Pour-over Coffee Set', emoji: '☕', price: 1899, description: 'Dripper, glass server and a pack of filters.' },
+/** The three products on the list page. Their details and reviews are fetched live. */
+export const PRODUCTS: ProductSummary[] = [
+  { id: '123', name: 'iPhone 13 Pro', image: 'https://cdn.dummyjson.com/product-images/smartphones/iphone-13-pro/thumbnail.webp' },
+  { id: '78', name: 'MacBook Pro 14"', image: 'https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/thumbnail.webp' },
+  { id: '105', name: 'MagSafe Battery Pack', image: 'https://cdn.dummyjson.com/product-images/mobile-accessories/apple-magsafe-battery-pack/thumbnail.webp' },
 ];
-
-export const REVIEWS: Record<string, Review[]> = {
-  '1': [
-    { id: 'r1', author: 'Ananya', rating: 5, text: 'Survived a muddy 10K without slipping once.' },
-    { id: 'r2', author: 'Rohan', rating: 4, text: 'Runs a little narrow, so go half a size up.' },
-  ],
-  '2': [
-    { id: 'r3', author: 'Meera', rating: 5, text: 'The office finally went silent.' },
-    { id: 'r4', author: 'Kabir', rating: 4, text: 'Great sound, the case is a bit bulky.' },
-  ],
-  '3': [{ id: 'r5', author: 'Isha', rating: 5, text: 'My mornings got noticeably better.' }],
-};

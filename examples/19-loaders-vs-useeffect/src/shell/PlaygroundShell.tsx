@@ -3,6 +3,7 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import { BRAND, FEATURED_COURSE, OFFERINGS, tracked, whatsappLink } from './brand';
 import type { Episode } from './types';
 import { installCapture } from './capture';
+import { GuidedTour, startTour } from './GuidedTour';
 import logoLight from './logo-light.png';
 import './shell.css';
 
@@ -133,6 +134,9 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
           <ul className="pg-chips">
             {episode.concepts.map((c) => <li key={c}>{c}</li>)}
           </ul>
+          {episode.tour && (
+            <button className="pg-tour-btn" onClick={startTour}>▶ Take the guided tour <span>{episode.tour.length} quick steps</span></button>
+          )}
           {episode.interview && (
             <a className="pg-iv-teaser" href="#interview">
               <span className="pg-iv-teaser-tag">Interview question</span>
@@ -146,21 +150,37 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
       <main className="pg-wrap pg-grid">
         <div className="pg-stage">{children}</div>
         <aside className="pg-side">
-          <section className="pg-card">
-            <p className="pg-eyebrow">How to play</p>
-            <ol className="pg-steps">
-              {episode.steps.map((s) => <li key={s}>{s}</li>)}
-            </ol>
-          </section>
+          {episode.tour ? (
+            <section className="pg-card pg-tour-card">
+              <p className="pg-eyebrow">New here?</p>
+              <p>Let the playground show you around: click, watch, learn.</p>
+              <button className="pg-btn pg-btn-teal" onClick={startTour}>▶ Take the guided tour</button>
+            </section>
+          ) : (
+            <section className="pg-card">
+              <p className="pg-eyebrow">How to play</p>
+              <ol className="pg-steps">
+                {episode.steps.map((s) => <li key={s}>{s}</li>)}
+              </ol>
+            </section>
+          )}
           <section className="pg-card pg-challenge">
-            <p className="pg-eyebrow pg-eyebrow-saffron">Your challenge</p>
-            <p>{episode.challenge}</p>
+            <p className="pg-eyebrow pg-eyebrow-saffron">{episode.challenges ? 'Challenges' : 'Your challenge'}</p>
+            {episode.challenges ? (
+              <ol className="pg-challenges">
+                {episode.challenges.map((c) => (
+                  <li key={c.text}><span className={`pg-level pg-level-${c.level.toLowerCase().replace(/[^a-z]/g, '')}`}>{c.level}</span><span>{c.text}</span></li>
+                ))}
+              </ol>
+            ) : <p>{episode.challenge}</p>}
+            <p className="pg-challenge-hint">Edit the code in StackBlitz: the app reloads as you type.</p>
           </section>
           <CourseAd episode={episode} />
         </aside>
       </main>
 
       <InterviewBand episode={episode} />
+      {episode.tour && <GuidedTour slug={episode.slug} steps={episode.tour} />}
 
       <section className="pg-more">
         <div className="pg-wrap">

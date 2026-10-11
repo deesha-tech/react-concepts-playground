@@ -1,6 +1,6 @@
 # Ep 01 · Race Conditions
 
-**You typed "phone", but the screen shows results for "ph". Why?** This example lets you trigger the bug, see it on a timeline, and fix it.
+**You typed "laptop", but the screen shows results for "la": makeup instead of laptops. Why?** This example lets you trigger the bug, see it on a timeline, and fix it.
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/01-race-conditions?file=src/FixedSearch.tsx)
 
@@ -12,7 +12,7 @@ The fix cancels the previous request in the useEffect cleanup with an `AbortCont
 
 ## How to play
 
-1. Keep **Buggy** selected and press **Type "phone" fast**. The screen ends on results for "ph".
+1. Keep **Buggy** selected and type **laptop** quickly in the search box (or press **Type it for me**). The screen ends on results for "la".
 2. Look at the timeline: the red bars are stale responses that overwrote newer results.
 3. Switch to **Fixed** and type again. Old requests turn grey: cancelled.
 4. Turn on **Debounce 400 ms** and type again: one request.
@@ -28,7 +28,7 @@ Move the AbortController and debounce logic into a reusable custom hook, `useSea
 | [`src/BuggySearch.tsx`](src/BuggySearch.tsx) | One request per keystroke, no cleanup |
 | [`src/FixedSearch.tsx`](src/FixedSearch.tsx) | AbortController in the effect cleanup, AbortError ignored |
 | [`src/useDebouncedValue.ts`](src/useDebouncedValue.ts) | The debounce hook |
-| [`src/api.ts`](src/api.ts) | The fake search API, with a deliberately slow "ph" search |
+| [`src/api.ts`](src/api.ts) | Real DummyJSON searches, with a deliberately slow "la" search |
 
 ## The interview answer
 

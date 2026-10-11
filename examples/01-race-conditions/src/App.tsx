@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PlaygroundShell } from './shell/PlaygroundShell';
 import { RequestTimeline } from './shell/RequestTimeline';
 import { CodePeek } from './shell/CodePeek';
-import { timeline } from './shell/timeline';
+import { timeline, useTimeline } from './shell/timeline';
 import { EPISODE } from './episode';
 import { BuggySearch } from './BuggySearch';
 import { FixedSearch } from './FixedSearch';
@@ -11,6 +11,9 @@ import { BUGGY_CODE, FIXED_CODE, DEBOUNCE_CODE } from './code';
 import './demo.css';
 
 type Mode = 'buggy' | 'fixed';
+
+/** The search the demo is built around: "la" (the slow, stale response) returns makeup, "laptop" returns laptops. */
+const WORD = 'laptop';
 
 export function App() {
   return (
@@ -39,17 +42,27 @@ function SearchDemo() {
     setText(value);
   };
   const autoType = () => {
-    restart('Typing "phone", one letter every 80 ms');
-    [...'phone'].forEach((_, i) => {
-      typing.current.push(window.setTimeout(() => setText('phone'.slice(0, i + 1)), 80 * (i + 1)));
+    restart('Typing "laptop", one letter every 80 ms');
+    [...WORD].forEach((_, i) => {
+      typing.current.push(window.setTimeout(() => setText(WORD.slice(0, i + 1)), 80 * (i + 1)));
     });
   };
+  // Tell the guided tour when a burst of typing has fully settled (every request done or cancelled).
+  const { requests } = useTimeline();
+  const settled = requests.length > 0 && requests.every((r) => r.status !== 'pending');
+  useEffect(() => {
+    if (!settled || text.length < 3) return;
+    const t = window.setTimeout(() => window.dispatchEvent(new Event('pg-search-settled')), 300);
+    return () => clearTimeout(t);
+  }, [settled, text, requests.length]);
+
   const switchMode = (next: Mode) => { setMode(next); restart(`Switched to ${next}`); };
 
   return (
     <div className="demo">
-      <section className="demo-card">
+      <section className="demo-card" data-stage="try">
         <div className="demo-head">
+          <span className="stage-tag">1 · Try it</span>
           <div className="seg" role="group" aria-label="Version">
             <button aria-pressed={mode === 'buggy'} onClick={() => switchMode('buggy')}>Buggy · no cleanup</button>
             <button className="seg-good" aria-pressed={mode === 'fixed'} onClick={() => switchMode('fixed')}>Fixed · AbortController</button>
@@ -65,10 +78,10 @@ function SearchDemo() {
               type="search"
               value={text}
               onChange={(e) => onType(e.target.value)}
-              placeholder="Search products…"
+              placeholder="Type “laptop” quickly…"
               aria-label="Search products"
             />
-            <button className="btn btn-primary" onClick={autoType}>▶ Type “phone” fast</button>
+            <button className="btn btn-primary" onClick={autoType} title="Types “laptop”, one letter every 80 ms">▶ Type it for me</button>
             <button className="btn" onClick={() => restart('Cleared')}>Clear</button>
           </div>
           {/* key: every restart remounts the search, so no state (or pending debounce) leaks into the next run */}

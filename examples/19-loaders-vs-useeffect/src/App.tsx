@@ -75,8 +75,9 @@ function DemoLayout() {
 
   return (
     <div className="demo">
-      <section className="demo-card">
+      <section className="demo-card" data-stage="try">
         <div className="demo-head">
+          <span className="stage-tag">1 · Try it</span>
           <div className="seg" role="group" aria-label="Data loading approach">
             <button aria-pressed={mode === 'junior'} onClick={() => switchMode('junior')}>Junior · useEffect</button>
             <button className="seg-good" aria-pressed={mode === 'senior'} onClick={() => switchMode('senior')}>Senior · loader</button>
@@ -134,11 +135,11 @@ function ProductList() {
       <div className="shop-grid">
         {PRODUCTS.map((p) => (
           <Link key={p.id} className="shop-card" to={`/${mode}/products/${p.id}`} onClick={() => open(p.name)}>
-            <span className="shop-emoji" aria-hidden>{p.emoji}</span>
+            <img className="shop-thumb" src={p.image} alt="" />
             <span>{p.name}</span>
           </Link>
         ))}
-        <Link className="shop-card shop-card-broken" to={`/${mode}/products/404`} onClick={() => open('a missing product')}>
+        <Link className="shop-card shop-card-broken" to={`/${mode}/products/999`} onClick={() => open('a missing product')}>
           <span className="shop-emoji" aria-hidden>❓</span>
           <span>A product that doesn't exist</span>
         </Link>

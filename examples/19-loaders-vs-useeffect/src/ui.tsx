@@ -2,17 +2,17 @@
 import type { ReactNode } from 'react';
 import type { Product, Review } from './api';
 
-const rupees = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
 export function ProductView({ product, children }: { product: Product; children?: ReactNode }) {
   return (
     <article className="shop-product">
       <div className="shop-hero">
-        <span className="shop-emoji" aria-hidden>{product.emoji}</span>
+        <img className="shop-img" src={product.image} alt="" />
         <div>
           <h3>{product.name}</h3>
           <p className="muted">{product.description}</p>
-          <p className="shop-price">{rupees.format(product.price)}</p>
+          <p className="shop-price">{product.brand ? `${product.brand} · ` : ''}{usd.format(product.price)}</p>
         </div>
       </div>
       <h4>Reviews</h4>

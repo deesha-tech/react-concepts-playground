@@ -34,3 +34,5 @@
 .shop-loading { color: var(--slate-strong); font-size: .9rem; margin: .5rem 0; }
 .shop-problem { border: 1px solid #f3c4a8; background: #fff5ee; color: var(--bad); border-radius: 10px; padding: .75rem 1rem; }
 .shop-problem p { margin: .25rem 0 0; color: var(--charcoal); }
+.shop-thumb { width: 72px; height: 72px; object-fit: contain; }
+.shop-img { width: 96px; height: 96px; object-fit: contain; background: var(--paper); border-radius: 14px; padding: .4rem; flex: none; }

@@ -87,3 +87,30 @@ export function fakeFetch<T>(label: string, ms: number, value: () => T, opts: { 
     else signal?.addEventListener('abort', abort, { once: true });
   });
 }
+
+export class HttpError extends Error {
+  constructor(public status: number, message: string) { super(message); }
+}
+
+/**
+ * A real network call (fetch) that shows up on the timeline like fakeFetch does.
+ * Cancelled requests are recorded as "cancelled", HTTP errors as "failed".
+ */
+export async function trackedFetch<T>(label: string, url: string, opts: { signal?: AbortSignal; group?: string } = {}): Promise<T> {
+  const id = timeline.start(label, opts.group);
+  try {
+    const res = await fetch(url, { signal: opts.signal });
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({} as { message?: string }));
+      timeline.finish(id, 'error');
+      throw new HttpError(res.status, body.message ?? res.statusText);
+    }
+    const data = (await res.json()) as T;
+    timeline.finish(id, 'done');
+    return data;
+  } catch (e) {
+    if (e instanceof DOMException && e.name === 'AbortError') timeline.finish(id, 'cancelled');
+    else if (!(e instanceof HttpError)) timeline.finish(id, 'error');
+    throw e;
+  }
+}

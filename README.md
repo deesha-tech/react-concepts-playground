@@ -28,7 +28,7 @@
     <td width="50%" valign="top">
       <a href="examples/01-race-conditions"><img src="docs/ep01-race-conditions.png" alt="Ep 01 · Race Conditions"></a>
       <h3>Ep 01 · Race Conditions</h3>
-      <p>Type "phone", get results for "ph". Watch the slow response overwrite the right one on the timeline, then fix it with AbortController and debounce.</p>
+      <p>Search "laptop", get lipstick. Watch the slow "la" response overwrite the right results on the timeline, then fix it with AbortController and debounce.</p>
       <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/01-race-conditions?file=src/FixedSearch.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
     </td>
     <td width="50%" valign="top">
@@ -46,11 +46,12 @@ No installs and no setup. Everything runs in your browser.
 
 1. **Click "Open in StackBlitz"** next to an example. StackBlitz loads the project and runs `npm install` for you. The first load takes a minute.
 2. **The app opens on the right, the code on the left.** The file that matters most for the concept opens automatically.
-3. **Play with the demo.** Use the toggle to switch between the problem and the fix, and watch the **network and render timeline** show every request and render as it happens.
-4. **Read the highlighted code** under the demo: these are the lines that make the difference.
-5. **Take the challenge** in the sidebar. Edit the code on the left; the app reloads as you type.
-6. **Read the interview question** at the bottom: a model answer, a 30-second version and the follow-ups interviewers ask.
-7. **Keep your version.** Click **Fork** in StackBlitz (sign in with GitHub) to save your changes to your own account.
+3. **Follow the guided tour.** It starts on your first visit and walks you through the demo step by step: click here, type this, watch that. Restart it any time with **Take the guided tour**.
+4. **Play with the demo yourself.** Use the toggle to switch between the problem and the fix, and watch the **network and render timeline** show every request and render as it happens.
+5. **Read the highlighted code** under the demo: these are the lines that make the difference.
+6. **Take a challenge** from the sidebar: Warm-up, Core or Stretch. Edit the code on the left; the app reloads as you type.
+7. **Read the interview question** at the bottom: a model answer, a 30-second version and the follow-ups interviewers ask.
+8. **Keep your version.** Click **Fork** in StackBlitz (sign in with GitHub) to save your changes to your own account.
 
 ## 📚 The full series
 
@@ -91,11 +92,12 @@ New examples arrive with each episode. Follow along on Instagram and YouTube so 
 
 ## What every example includes
 
-- a **live demo** with a toggle between the problem and the fix
+- a **guided tour** that walks you through the demo, step by step
+- a **live demo** with real data from [DummyJSON](https://dummyjson.com) and a toggle between the problem and the fix
 - a **network and render timeline**, so you see what the code does, not just read about it
 - the **key lines of code**, highlighted
 - the **interview question** with a model answer, a 30-second version and follow-ups
-- a small **challenge** to try on your own
+- graded **challenges** (Warm-up, Core, Stretch) to try on your own
 
 ## Run an example locally
 
@@ -106,7 +108,7 @@ npm install
 npm run dev
 ```
 
-Each example is a self-contained Vite + React + TypeScript project. There is no backend: a small fake API with realistic delays stands in for the server.
+Each example is a self-contained Vite + React + TypeScript project. Data comes live from [DummyJSON](https://dummyjson.com), the same API the course app uses, with deliberate delays so the timing is easy to see.
 
 ## Built from the same stack as the course
 

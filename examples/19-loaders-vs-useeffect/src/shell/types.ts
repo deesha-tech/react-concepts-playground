@@ -1,4 +1,21 @@
 // Copied from /shell by scripts/sync-shell.mjs. Edit the original there.
+export interface TourStep {
+  /** CSS selector of the element to point at */
+  target: string;
+  title: string;
+  text: string;
+  /** 'click': wait for the visitor to click the target; 'event': wait for a window event (e.g. a search settling) */
+  action?: 'click' | 'event';
+  event?: string;
+  /** ms to wait after the click/event before moving on */
+  after?: number;
+}
+
+export interface Challenge {
+  level: 'Warm-up' | 'Core' | 'Stretch';
+  text: string;
+}
+
 export interface Episode {
   /** Episode number in the video series */
   n: number;
@@ -14,6 +31,10 @@ export interface Episode {
   steps: string[];
   /** A small task for the viewer, also in the README */
   challenge: string;
+  /** Graded challenges shown in the sidebar (falls back to `challenge`) */
+  challenges?: Challenge[];
+  /** The guided tour: step-by-step tooltips that replace a wall of "how to play" text */
+  tour?: TourStep[];
   /** The interview question and a model answer, written the way you'd say it out loud */
   interview?: {
     question: string;

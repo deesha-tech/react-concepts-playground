@@ -32,8 +32,8 @@ export function RequestTimeline({ title = 'Network and render timeline', minScal
   const lastEvent = events.length > 1 ? events[events.length - 1] : null;
 
   return (
-    <section className="demo-card" aria-label={title}>
-      <div className="demo-head"><h2>{title}</h2><span className="muted" style={{ fontSize: '.8rem' }}>live</span></div>
+    <section className="demo-card" aria-label={title} data-stage="watch">
+      <div className="demo-head"><span className="stage-tag">2 · Watch it</span><h2>{title}</h2><span className="tl-live"><i />live</span></div>
       <div className="demo-body">
         {requests.length === 0 && events.length <= 1 ? (
           <p className="tl-empty">Interact with the demo above and every request and render shows up here.</p>
