@@ -38,6 +38,15 @@
       <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/19-loaders-vs-useeffect?file=src/senior/routes.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="examples/08-keys-in-lists"><img src="docs/ep08-keys-in-lists.png" alt="Ep 08 · Index as Key Bug"></a>
+      <h3>Ep 08 · Index as Key Bug</h3>
+      <p>Type a note on a product, delete the row above it, and the note jumps to the wrong product. Watch what React really does to the DOM with key={index}, key={product.id} and key={Math.random()}.</p>
+      <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/08-keys-in-lists?file=src/KeyedList.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
+    </td>
+    <td width="50%" valign="top"></td>
+  </tr>
 </table>
 
 ## ▶️ How to play with an example in StackBlitz
@@ -66,7 +75,7 @@ New examples arrive with each episode. Follow along on Instagram and YouTube so 
 | 05 | Counter Stuck at 1 | Stale closures, explained in 90 seconds | 🔜 Coming soon |
 | 06 | The Dependency Array | No array vs [] vs [a, b], once and for all | 🔜 Coming soon |
 | 07 | Why useEffect Runs Twice | StrictMode, and why it's actually helping you | 🔜 Coming soon |
-| 08 | Index as Key Bug | Why key={index} breaks lists | 🔜 Coming soon |
+| **08** | **[Index as Key Bug](examples/08-keys-in-lists)** | **Why key={index} breaks lists, and what React really does to the DOM** | ✅ **[Open in StackBlitz](https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/08-keys-in-lists?file=src/KeyedList.tsx)** |
 | 09 | You Might Not Need an Effect | Derived state and event handlers over effects | 🔜 Coming soon |
 | 10 | Controlled vs Uncontrolled | When to use each, with real form examples | 🔜 Coming soon |
 | 11 | The Context Re-render Trap | Why one big Context hurts, and three fixes | 🔜 Coming soon |

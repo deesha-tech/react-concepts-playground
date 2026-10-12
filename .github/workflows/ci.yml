@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        example: [01-race-conditions, 19-loaders-vs-useeffect]
+        example: [01-race-conditions, 08-keys-in-lists, 19-loaders-vs-useeffect]
     defaults:
       run:
         working-directory: examples/${{ matrix.example }}

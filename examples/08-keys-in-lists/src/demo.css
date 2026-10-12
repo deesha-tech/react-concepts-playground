@@ -1,0 +1,49 @@
+/* Styles for this example. Brand chrome lives in shell/shell.css. */
+.demo-hint { margin: 0 0 .85rem; font-size: .88rem; color: var(--slate-strong); }
+.demo-note { margin: 0; padding: .7rem 1rem; font-size: .88rem; border-top: 1px solid var(--rule); background: #fbfaf7; }
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .9rem; }
+
+/* The list. Row numbers come from a CSS counter so a reorder never rewrites them (the log counts real DOM updates only). */
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; counter-reset: row; }
+.row { counter-increment: row; display: grid; grid-template-columns: auto auto minmax(120px, 1fr) auto minmax(110px, 1fr) auto auto; align-items: center; gap: .6rem;
+  padding: .5rem .65rem; border: 1px solid var(--rule); border-radius: 10px; background: var(--white); font-size: .88rem; }
+.row::before { content: counter(row); font: 700 .74rem var(--font-mono); color: var(--slate); width: 1.1rem; text-align: right; }
+.row-img { border-radius: 8px; background: var(--paper); object-fit: cover; }
+.row-main { display: grid; line-height: 1.25; min-width: 0; }
+.row-main strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row-gift { display: inline-flex; align-items: center; gap: .35rem; font-weight: 600; color: var(--navy); cursor: pointer; white-space: nowrap; }
+.row-gift input { width: 15px; height: 15px; accent-color: var(--teal); }
+.row-note { min-width: 0; font: 500 .86rem var(--font-sans); padding: .4rem .55rem; border: 1.5px solid var(--rule); border-radius: 8px; }
+.row-note:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px color-mix(in oklab, var(--teal) 18%, transparent); }
+.row-qty { display: inline-flex; align-items: center; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.row-qty button { border: 0; background: var(--paper); color: var(--navy); font: 700 .95rem var(--font-sans); width: 1.7rem; height: 1.7rem; cursor: pointer; }
+.row-qty output { min-width: 1.5rem; text-align: center; font: 700 .86rem var(--font-mono); }
+.row-badge { font: 700 .72rem var(--font-mono); color: var(--saffron-deep, #b8771b); background: #fff3dd; border-radius: 999px; padding: .15rem .5rem; white-space: nowrap; }
+@media (max-width: 640px) {
+  .seg-key { display: none; }                      /* "Buggy / Fixed / Worse"; the key itself is in the note and code below */
+  .row { grid-template-columns: auto auto 1fr auto; grid-template-areas: "num img main gift" "num note note note" "num qty qty badge"; row-gap: .5rem; }
+  .row::before { grid-area: num; } .row-img { grid-area: img; } .row-main { grid-area: main; } .row-gift { grid-area: gift; }
+  .row-note { grid-area: note; } .row-qty { grid-area: qty; justify-self: start; } .row-badge { grid-area: badge; justify-self: end; }
+  .rl-rows { font-size: .76rem; }
+  .rl-rows th:nth-child(5), .rl-rows td:nth-child(5) { display: none; }
+}
+
+/* Reconciliation log (inside the dark "Watch it" card) */
+.rl-rows { width: 100%; border-collapse: collapse; font-size: .82rem; margin-bottom: .75rem; }
+.rl-rows th { text-align: left; font: 700 .68rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: #9aa6ba; padding: 0 .5rem .35rem 0; }
+.rl-rows td { padding: .3rem .5rem .3rem 0; border-top: 1px solid rgba(255,255,255,.08); color: #dbe3f0; vertical-align: middle; }
+.rl-rows .muted { color: #6f7b90; }
+.rl-rows s { color: #ff9a76; }
+.rl-rows strong { color: #ff9a76; }
+.rl-wrong td { background: rgba(255,122,80,.09); }
+.rl-badge { font: 700 .72rem var(--font-mono); background: rgba(227,155,44,.18); color: var(--saffron); border-radius: 999px; padding: .1rem .45rem; }
+.rl-verdict { margin: 0 0 .85rem; padding: .55rem .75rem; border-radius: 8px; font-size: .84rem; font-weight: 600; }
+.rl-verdict-bad { background: rgba(255,122,80,.14); color: #ffb79b; }
+.rl-verdict-ok { background: rgba(47,211,180,.14); color: #9fe3d6; }
+.rl-log { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; font-size: .8rem; }
+.rl-entry { display: grid; grid-template-columns: minmax(140px, 32%) 1fr auto; gap: .6rem; align-items: baseline; padding: .3rem 0; border-top: 1px solid rgba(255,255,255,.06); }
+.rl-entry:first-child { border-top: 0; }
+.rl-action { color: var(--white); font-weight: 600; }
+.rl-dom { font-family: var(--font-mono); color: #b9c2d3; }
+.rl-inst { font: 700 .72rem var(--font-mono); color: #ffb79b; white-space: nowrap; }
+.rl-heavy .rl-dom { color: #ff9a76; }
