@@ -1,0 +1,335 @@
+{
+  "series": "React Important Concepts, Questions & Patterns",
+  "categories": [
+    "Data fetching",
+    "Rendering & performance",
+    "Hooks & effects",
+    "State & forms",
+    "UI, routing & testing"
+  ],
+  "episodes": [
+    {
+      "n": 1,
+      "slug": "01-race-conditions",
+      "title": "Race Conditions",
+      "category": "Data fetching",
+      "live": true,
+      "pattern": "Abort stale requests",
+      "type": "React Interview",
+      "summary": "You typed \"laptop\", but the screen shows results for \"la\": makeup instead of laptops. Responses can come back out of order, and an old one overwrites the new one. Cancel stale requests with AbortController, and debounce the input.",
+      "concepts": [
+        "Race condition",
+        "useEffect cleanup",
+        "AbortController",
+        "AbortError",
+        "Debounce"
+      ],
+      "stackblitz": "https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/01-race-conditions?file=src/FixedSearch.tsx",
+      "github": "https://github.com/deesha-tech/react-concepts-playground/tree/main/examples/01-race-conditions",
+      "challenges": [
+        {
+          "level": "Warm-up",
+          "text": "Change the debounce to 150 ms, then to 800 ms. What changes for a fast typist, and for a slow one?"
+        },
+        {
+          "level": "Core",
+          "text": "Move the AbortController and debounce logic into a reusable custom hook, useSearch(query), that returns { results, resultsFor, loading, error }."
+        },
+        {
+          "level": "Stretch",
+          "text": "Replace the AbortController with an \"ignore\" flag in the cleanup. Watch the timeline: which requests still run, and why is that worse?"
+        }
+      ],
+      "interviewQuestion": "A user types \"laptop\" in a search box, but the screen shows results for \"la\". Why does that happen, and how would you fix it?",
+      "videoUrl": null
+    },
+    {
+      "n": 2,
+      "slug": "02-cart-persistence",
+      "title": "Cart Empty After Refresh",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 3,
+      "slug": "03-error-boundaries",
+      "title": "One Crash, Blank App",
+      "category": "UI, routing & testing",
+      "live": false
+    },
+    {
+      "n": 4,
+      "slug": "04-rules-of-hooks",
+      "title": "A Hook Inside an If",
+      "category": "Hooks & effects",
+      "live": false
+    },
+    {
+      "n": 5,
+      "slug": "05-stale-closures",
+      "title": "Counter Stuck at 1",
+      "category": "Hooks & effects",
+      "live": false
+    },
+    {
+      "n": 6,
+      "slug": "06-dependency-array",
+      "title": "The Dependency Array",
+      "category": "Hooks & effects",
+      "live": false
+    },
+    {
+      "n": 7,
+      "slug": "07-strictmode-double-effect",
+      "title": "Why useEffect Runs Twice",
+      "category": "Hooks & effects",
+      "live": false
+    },
+    {
+      "n": 8,
+      "slug": "08-keys-in-lists",
+      "title": "Index as Key Bug",
+      "category": "Rendering & performance",
+      "live": true,
+      "pattern": "Stable identity keys",
+      "type": "React Interview",
+      "summary": "You typed a note on one product, deleted the row above it, and the note jumped to a different product. React matched the rows by position, because the key was the index. Watch what React does to the DOM with key={index}, key={product.id} and key={Math.random()}.",
+      "concepts": [
+        "Keys",
+        "Reconciliation",
+        "State and position",
+        "Stable ids",
+        "Reset with key"
+      ],
+      "stackblitz": "https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/08-keys-in-lists?file=src/KeyedList.tsx",
+      "github": "https://github.com/deesha-tech/react-concepts-playground/tree/main/examples/08-keys-in-lists",
+      "challenges": [
+        {
+          "level": "Warm-up",
+          "text": "With key={index}, add a product at the END of the list (not on top) and type notes. Why does the bug not appear? When is an index key actually fine?"
+        },
+        {
+          "level": "Core",
+          "text": "The products lose their ids: map them to { title, price } only. Build a key without an id that still survives sorting and deleting, then explain why Math.random() and index both fail that test."
+        },
+        {
+          "level": "Stretch",
+          "text": "Add a <ProductForm key={selected.id}> editor under the list that resets when you pick another product, without any useEffect. Then remove the key and watch the form go stale."
+        }
+      ],
+      "interviewQuestion": "A list of products has an input in every row. The user types in the first row and deletes that product, but the text stays in the first row, now under a different product. Why, and how would you fix it?",
+      "videoUrl": null
+    },
+    {
+      "n": 9,
+      "slug": "09-you-might-not-need-an-effect",
+      "title": "You Might Not Need an Effect",
+      "category": "Hooks & effects",
+      "live": false
+    },
+    {
+      "n": 10,
+      "slug": "10-controlled-vs-uncontrolled",
+      "title": "Controlled vs Uncontrolled",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 11,
+      "slug": "11-context-rerenders",
+      "title": "The Context Re-render Trap",
+      "category": "Rendering & performance",
+      "live": false
+    },
+    {
+      "n": 12,
+      "slug": "12-usememo-usecallback",
+      "title": "useMemo & useCallback Myths",
+      "category": "Rendering & performance",
+      "live": false
+    },
+    {
+      "n": 13,
+      "slug": "13-custom-hooks",
+      "title": "Build a Custom Hook",
+      "category": "Hooks & effects",
+      "live": false
+    },
+    {
+      "n": 14,
+      "slug": "14-lift-state-vs-store",
+      "title": "Props, Context or Store?",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 15,
+      "slug": "15-url-as-state",
+      "title": "Filters in the URL",
+      "category": "UI, routing & testing",
+      "live": false
+    },
+    {
+      "n": 16,
+      "slug": "16-token-refresh-queue",
+      "title": "Token Expires Mid-Request",
+      "category": "Data fetching",
+      "live": false
+    },
+    {
+      "n": 17,
+      "slug": "17-axios-interceptors",
+      "title": "Axios Interceptors",
+      "category": "Data fetching",
+      "live": false
+    },
+    {
+      "n": 18,
+      "slug": "18-protected-routes",
+      "title": "Protected Routes & Roles",
+      "category": "UI, routing & testing",
+      "live": false
+    },
+    {
+      "n": 19,
+      "slug": "19-loaders-vs-useeffect",
+      "title": "Loaders vs useEffect",
+      "category": "Data fetching",
+      "live": true,
+      "pattern": "Route loaders for page data",
+      "type": "React Concept",
+      "summary": "Fetching in useEffect starts the request only after the first render, so nested components fetch one after another. A React Router loader fetches before render, in parallel.",
+      "concepts": [
+        "useEffect fetching",
+        "Request waterfall",
+        "Loaders",
+        "useLoaderData",
+        "request.signal",
+        "useNavigation"
+      ],
+      "stackblitz": "https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/19-loaders-vs-useeffect?file=src/senior/routes.tsx",
+      "github": "https://github.com/deesha-tech/react-concepts-playground/tree/main/examples/19-loaders-vs-useeffect",
+      "challenges": [
+        {
+          "level": "Warm-up",
+          "text": "Set Network to \"Slow\" and open the same product in both modes. Which one feels better to use, and why?"
+        },
+        {
+          "level": "Core",
+          "text": "Add a third request, \"related products\", as another nested route with its own loader. The total time should stay the same with loaders. Then try it in the useEffect version."
+        },
+        {
+          "level": "Stretch",
+          "text": "Make the reviews non-blocking: return their promise from the loader without awaiting it, and render it with <Suspense> and <Await>. The product should appear first."
+        }
+      ],
+      "interviewQuestion": "How do you load the data a page needs in React? Would you fetch it in useEffect?",
+      "videoUrl": null
+    },
+    {
+      "n": 20,
+      "slug": "20-slow-loader-suspense",
+      "title": "Slow Loader Blocks Navigation",
+      "category": "Data fetching",
+      "live": false
+    },
+    {
+      "n": 21,
+      "slug": "21-optimistic-ui",
+      "title": "Optimistic UI",
+      "category": "Data fetching",
+      "live": false
+    },
+    {
+      "n": 22,
+      "slug": "22-forms-rhf-zod",
+      "title": "Forms with RHF + Zod",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 23,
+      "slug": "23-virtualised-lists",
+      "title": "10,000 Rows Are Janky",
+      "category": "Rendering & performance",
+      "live": false
+    },
+    {
+      "n": 24,
+      "slug": "24-realtime-batching",
+      "title": "50 Updates a Second",
+      "category": "Rendering & performance",
+      "live": false
+    },
+    {
+      "n": 25,
+      "slug": "25-server-vs-client-state",
+      "title": "Server State vs Client State",
+      "category": "Data fetching",
+      "live": false
+    },
+    {
+      "n": 26,
+      "slug": "26-zustand-vs-redux",
+      "title": "Zustand vs Redux Toolkit",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 27,
+      "slug": "27-compound-components",
+      "title": "Compound Components",
+      "category": "UI, routing & testing",
+      "live": false
+    },
+    {
+      "n": 28,
+      "slug": "28-portals-modals",
+      "title": "Modals with Portals",
+      "category": "UI, routing & testing",
+      "live": false
+    },
+    {
+      "n": 29,
+      "slug": "29-react19-actions",
+      "title": "React 19 Actions",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 30,
+      "slug": "30-testing-what-to-test",
+      "title": "What to Test in React",
+      "category": "UI, routing & testing",
+      "live": false
+    },
+    {
+      "n": 31,
+      "slug": "31-why-did-it-rerender",
+      "title": "Why Did It Re-render?",
+      "category": "Rendering & performance",
+      "live": false
+    },
+    {
+      "n": 32,
+      "slug": "32-props-into-state",
+      "title": "Copying Props into State",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 33,
+      "slug": "33-useref-vs-usestate",
+      "title": "useRef vs useState",
+      "category": "Hooks & effects",
+      "live": false
+    },
+    {
+      "n": 34,
+      "slug": "34-code-splitting",
+      "title": "A 2 MB Bundle on Mobile",
+      "category": "Rendering & performance",
+      "live": false
+    }
+  ]
+}
