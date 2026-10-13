@@ -19,7 +19,7 @@ The fix cancels the previous request in the useEffect cleanup with an `AbortCont
 
 ## Your challenges
 
-This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/01-race-conditions&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=01-race-conditions): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
+This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/react/01-race-conditions&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=01-race-conditions): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
 
 ## Where to look
 

@@ -21,7 +21,7 @@ The **Reconciliation log** under the list counts what React really did to the DO
 
 ## Your challenges
 
-This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/08-keys-in-lists&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=08-keys-in-lists): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
+This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/react/08-keys-in-lists&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=08-keys-in-lists): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
 
 ## Where to look
 

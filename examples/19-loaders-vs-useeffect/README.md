@@ -23,7 +23,7 @@
 
 ## Your challenges
 
-This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/19-loaders-vs-useeffect&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=19-loaders-vs-useeffect): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
+This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/react/19-loaders-vs-useeffect&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=19-loaders-vs-useeffect): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
 
 ## Where to look
 

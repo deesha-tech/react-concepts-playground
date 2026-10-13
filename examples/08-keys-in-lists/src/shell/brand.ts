@@ -26,9 +26,9 @@ export function tracked(path: string, episodeSlug: string, medium = 'playground'
   return url.toString();
 }
 
-/** The learner portal page for this example's challenges: sign in, take the challenges, commit to "My repository". */
+/** The learner portal page for this example's challenges (one playground per technology, this one is "react"): sign in, take the challenges, commit to "My repository". */
 export function challengesLink(episodeSlug: string): string {
-  return tracked(`/learn?next=/learn/playground/${episodeSlug}`, episodeSlug, 'challenges');
+  return tracked(`/learn?next=/learn/playground/react/${episodeSlug}`, episodeSlug, 'challenges');
 }
 
 export function whatsappLink(message: string): string {
