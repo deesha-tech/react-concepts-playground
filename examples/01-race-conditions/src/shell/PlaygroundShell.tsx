@@ -41,16 +41,16 @@ function TopBar({ episode }: { episode: Episode }) {
   const live = groups.flatMap((g) => g.episodes).filter(isLive).length;
   const item = (e: (typeof groups)[number]['episodes'][number]) =>
     isLive(e) ? (
-      <a key={e.slug} href={stackblitzUrl(e)} target="_blank" rel="noreferrer" aria-current={e.slug === episode.slug ? 'page' : undefined} title={e.pattern}>
+      <a key={e.slug} className="pg-ep-live" href={stackblitzUrl(e)} target="_blank" rel="noreferrer" aria-current={e.slug === episode.slug ? 'page' : undefined} title={e.pattern}>
         <span className="pg-ep-n">{String(e.n).padStart(2, '0')}</span>{e.title}
       </a>
     ) : (
-      <span key={e.slug} className="pg-ep-soon" aria-disabled="true"><span className="pg-ep-n">{String(e.n).padStart(2, '0')}</span>{e.title}<i>soon</i></span>
+      <span key={e.slug} className="pg-ep-soon" aria-disabled="true" title="Coming soon"><span className="pg-ep-n">{String(e.n).padStart(2, '0')}</span>{e.title}</span>
     );
   // Desktop: every category side by side. Phone: one accordion per category, the current one open.
   const megaPanel = (
     <div className="pg-mega">
-      <p className="pg-mega-head">{live} of {groups.flatMap((g) => g.episodes).length} episodes live · new ones every week</p>
+      <p className="pg-mega-head"><i className="pg-ep-dot" /> {live} live · {groups.flatMap((g) => g.episodes).length - live} coming, a new one every week</p>
       <div className="pg-mega-cols">
         {groups.map((g) => (
           <section key={g.category}>
