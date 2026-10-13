@@ -68,7 +68,7 @@ No installs and no setup. Everything runs in your browser.
 3. **Follow the guided tour.** It starts on your first visit and walks you through the demo step by step: click here, type this, watch that. Restart it any time with the **Guided tour** button at the bottom right.
 4. **Play with the demo yourself.** Use the toggle to switch between the **Trap** and the **Pattern**, and watch the **network and render timeline** show every request and render as it happens.
 5. **Read the highlighted code** under the demo: these are the lines that make the difference.
-6. **Take a challenge** from the sidebar: Warm-up, Core or Stretch. Edit the code on the left; the app reloads as you type.
+6. **Take the challenges.** The **Challenges** button (bottom right) opens three of them: Warm-up, Core and Stretch. Sign in to the learning portal, commit your solution to your own repository, and get it reviewed.
 7. **Read the interview question** at the bottom: a model answer, a 30-second version and the follow-ups interviewers ask.
 8. **Keep your version.** Click **Fork** in StackBlitz (sign in with GitHub) to save your changes to your own account.
 
