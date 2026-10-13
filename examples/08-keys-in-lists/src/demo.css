@@ -1,4 +1,5 @@
 /* Styles for this example. Brand chrome lives in shell/shell.css. */
+.seg-key-short { display: none; }
 .demo-hint { margin: 0 0 .85rem; font-size: .88rem; color: var(--slate-strong); }
 .demo-note { margin: 0; padding: .7rem 1rem; font-size: .88rem; border-top: 1px solid var(--rule); background: #fbfaf7; }
 .actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .9rem; }
@@ -20,7 +21,8 @@
 .row-qty output { min-width: 1.5rem; text-align: center; font: 700 .86rem var(--font-mono); }
 .row-badge { font: 700 .72rem var(--font-mono); color: var(--saffron-deep, #b8771b); background: #fff3dd; border-radius: 999px; padding: .15rem .5rem; white-space: nowrap; }
 @media (max-width: 640px) {
-  .seg-key { display: none; }                      /* "Buggy / Fixed / Worse"; the key itself is in the note and code below */
+  .seg-key { display: none; }                      /* phones show "Trap · index", "Pattern · id", "Double trap · random" */
+  .seg-key-short { display: inline; }
   .row { grid-template-columns: auto auto 1fr auto; grid-template-areas: "num img main gift" "num note note note" "num qty qty badge"; row-gap: .5rem; }
   .row::before { grid-area: num; } .row-img { grid-area: img; } .row-main { grid-area: main; } .row-gift { grid-area: gift; }
   .row-note { grid-area: note; } .row-qty { grid-area: qty; justify-self: start; } .row-badge { grid-area: badge; justify-self: end; }

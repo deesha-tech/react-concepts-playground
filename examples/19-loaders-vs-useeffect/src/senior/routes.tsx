@@ -22,7 +22,7 @@ export async function reviewsLoader({ params, request }: LoaderFunctionArgs) {
 }
 
 /** No useState, no useEffect, no loading flag: the data is already here on the first render. */
-export function SeniorProductPage() {
+export function LoaderProductPage() {
   const product = useLoaderData<typeof productLoader>();
   useRenderMark('Product page renders: product, with data');
   return (
@@ -32,14 +32,14 @@ export function SeniorProductPage() {
   );
 }
 
-export function SeniorReviews() {
+export function LoaderReviews() {
   const reviews = useLoaderData<typeof reviewsLoader>();
   useRenderMark('Reviews render: list, with data');
   return <ReviewList reviews={reviews} />;
 }
 
 /** A failed loader lands here instead of in a hand-written error state. */
-export function SeniorProductError() {
+export function LoaderProductError() {
   const error = useRouteError();
   useRenderMark('Error boundary renders');
   if (isRouteErrorResponse(error)) {

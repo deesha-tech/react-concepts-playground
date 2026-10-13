@@ -64,8 +64,8 @@ function SearchDemo() {
         <div className="demo-head">
           <span className="stage-tag">1 · Try it</span>
           <div className="seg" role="group" aria-label="Version">
-            <button aria-pressed={mode === 'buggy'} onClick={() => switchMode('buggy')}>Buggy · no cleanup</button>
-            <button className="seg-good" aria-pressed={mode === 'fixed'} onClick={() => switchMode('fixed')}>Fixed · AbortController</button>
+            <button aria-pressed={mode === 'buggy'} onClick={() => switchMode('buggy')}>Trap · no cleanup</button>
+            <button className="seg-good" aria-pressed={mode === 'fixed'} onClick={() => switchMode('fixed')}>Pattern · AbortController</button>
           </div>
           <label className="toggle">
             <input type="checkbox" checked={debounce} onChange={(e) => { setDebounce(e.target.checked); restart(e.target.checked ? 'Debounce on' : 'Debounce off'); }} />
@@ -96,7 +96,7 @@ function SearchDemo() {
 
       <RequestTimeline minScaleMs={1800} />
       <CodePeek
-        title={mode === 'buggy' ? 'Buggy: no cleanup' : 'Fixed: abort in the cleanup'}
+        title={mode === 'buggy' ? 'Trap: no cleanup' : 'Pattern: abort in the cleanup'}
         file={mode === 'buggy' ? 'src/BuggySearch.tsx' : 'src/FixedSearch.tsx'}
         code={mode === 'buggy' ? BUGGY_CODE : FIXED_CODE}
       />

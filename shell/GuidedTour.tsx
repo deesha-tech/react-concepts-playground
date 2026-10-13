@@ -22,6 +22,11 @@ export function GuidedTour({ slug, steps }: { slug: string; steps: TourStep[] })
   const [rect, setRect] = useState<Rect | null>(null);
   const tipRef = useRef<HTMLDivElement>(null);
   const step = i === null ? null : steps[i];
+  const floater = step ? null : (
+    <button className="pg-tour-float" onClick={() => setI(0)} aria-label="Take the guided tour">
+      <span className="pg-tour-float-play">▶</span>Guided tour<span className="pg-tour-float-n">{steps.length} steps</span>
+    </button>
+  );
 
   const close = useCallback(() => { setI(null); markSeen(slug); }, [slug]);
   const next = useCallback(() => setI((n) => (n === null ? null : n + 1 >= steps.length ? (markSeen(slug), null) : n + 1)), [slug, steps.length]);
@@ -82,7 +87,7 @@ export function GuidedTour({ slug, steps }: { slug: string; steps: TourStep[] })
     return () => window.removeEventListener('keydown', onKey);
   }, [i, step, close, next]);
 
-  if (!step || i === null) return null;
+  if (!step || i === null) return floater;
 
   // Tooltip below the target when there's room, otherwise above; centred when the target is missing.
   const tipH = tipRef.current?.offsetHeight ?? 190, tipW = Math.min(360, window.innerWidth - 24);

@@ -1,10 +1,17 @@
 import { useEffect, useRef, type ReactNode } from 'react';
-import { BRAND, FEATURED_COURSE, OFFERINGS, tracked, whatsappLink } from './brand';
+import { BRAND, FEATURED_COURSE, OFFERINGS, challengesLink, tracked, whatsappLink } from './brand';
 import type { Episode } from './types';
 import { installCapture } from './capture';
-import { GuidedTour, startTour } from './GuidedTour';
+import { grouped, isLive, stackblitzUrl } from './episodes';
+import { GuidedTour } from './GuidedTour';
 import logoLight from './logo-light.png';
 import './shell.css';
+
+/** The first sentence of a challenge, as a teaser; the full text lives in the learner portal. */
+function brief(text: string): string {
+  const first = text.match(/^.*?[.?!](\s|$)/)?.[0].trim() ?? text;
+  return first.length > 90 ? first.slice(0, 87).trimEnd() + '…' : first;
+}
 
 /** Closes an open <details> menu when the user clicks anywhere outside it. */
 function useCloseOnOutsideClick() {
@@ -21,14 +28,44 @@ function useCloseOnOutsideClick() {
 
 function TopBar({ episode }: { episode: Episode }) {
   const courses = useCloseOnOutsideClick();
+  const examples = useCloseOnOutsideClick();
   const mobile = useCloseOnOutsideClick();
   const links = [
-    { label: 'All examples', href: BRAND.repoUrl },
     episode.videoUrl ? { label: 'Watch the episode', href: episode.videoUrl } : null,
     BRAND.youtube ? { label: 'YouTube', href: BRAND.youtube } : null,
     BRAND.instagram ? { label: 'Instagram', href: BRAND.instagram } : null,
   ].filter((l): l is { label: string; href: string } => l !== null);
 
+  const groups = grouped(episode.slug);
+  const live = groups.flatMap((g) => g.episodes).filter(isLive).length;
+  const item = (e: (typeof groups)[number]['episodes'][number]) =>
+    isLive(e) ? (
+      <a key={e.slug} href={stackblitzUrl(e)} target="_blank" rel="noreferrer" aria-current={e.slug === episode.slug ? 'page' : undefined} title={e.pattern}>
+        <span className="pg-ep-n">{String(e.n).padStart(2, '0')}</span>{e.title}
+      </a>
+    ) : (
+      <span key={e.slug} className="pg-ep-soon" aria-disabled="true"><span className="pg-ep-n">{String(e.n).padStart(2, '0')}</span>{e.title}<i>soon</i></span>
+    );
+  // Desktop: every category side by side. Phone: one accordion per category, the current one open.
+  const megaPanel = (
+    <div className="pg-mega">
+      <p className="pg-mega-head">{live} of {groups.flatMap((g) => g.episodes).length} episodes live · new ones every week</p>
+      <div className="pg-mega-cols">
+        {groups.map((g) => (
+          <section key={g.category}>
+            <h4>{g.category}</h4>
+            {g.episodes.map(item)}
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+  const mobileGroups = groups.map((g, i) => (
+    <details key={g.category} className="pg-acc" open={i === 0}>
+      <summary>{g.category}<span>{g.episodes.filter(isLive).length}/{g.episodes.length}</span></summary>
+      <div>{g.episodes.map(item)}</div>
+    </details>
+  ));
   const courseLinks = OFFERINGS.map((o) => (
     <a key={o.path} href={tracked(o.path, episode.slug, 'menu')} target="_blank" rel="noreferrer">
       <span className="pg-menu-kind">{o.kind}</span>
@@ -44,6 +81,10 @@ function TopBar({ episode }: { episode: Episode }) {
         </a>
         <span className="pg-product">React Concepts Playground</span>
         <nav className="pg-nav" aria-label="Playground">
+          <details className="pg-menu pg-menu-wide" ref={examples}>
+            <summary>All examples</summary>
+            <div className="pg-menu-panel">{megaPanel}</div>
+          </details>
           {links.map((l) => (
             <a key={l.label} href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
           ))}
@@ -58,6 +99,9 @@ function TopBar({ episode }: { episode: Episode }) {
         <details className="pg-menu pg-mobile" ref={mobile}>
           <summary aria-label="Menu">Menu</summary>
           <div className="pg-menu-panel">
+            <p className="pg-mega-head">Episodes</p>
+            {mobileGroups}
+            <hr />
             {links.map((l) => (
               <a key={l.label} href={l.href} target="_blank" rel="noreferrer"><span className="pg-menu-title">{l.label}</span></a>
             ))}
@@ -77,13 +121,10 @@ function CourseAd({ episode }: { episode: Episode }) {
     <section className="pg-card pg-ad" aria-label="Featured course">
       <p className="pg-eyebrow pg-eyebrow-saffron">{c.eyebrow}</p>
       <h3>{c.title}</h3>
-      <p className="pg-ad-pitch">{c.pitch}</p>
-      <ul>
-        {c.highlights.map((h) => <li key={h}>{h}</li>)}
-      </ul>
+      <p className="pg-ad-facts">{c.highlights.slice(0, 3).join(' · ')}</p>
       {showBatch && <p className="pg-batch">{c.nextBatch.label}</p>}
       <a className="pg-btn pg-btn-saffron" href={tracked(c.path, episode.slug, 'sidebar')} target="_blank" rel="noreferrer">{c.cta} →</a>
-      <a className="pg-btn pg-btn-ghost" href={whatsappLink(c.whatsappMessage)} target="_blank" rel="noreferrer">Ask on WhatsApp</a>
+      <a className="pg-ad-wa" href={whatsappLink(c.whatsappMessage)} target="_blank" rel="noreferrer">Ask on WhatsApp</a>
     </section>
   );
 }
@@ -129,18 +170,15 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
         <div className="pg-wrap">
           <p className="pg-eyebrow">Ep {String(episode.n).padStart(2, '0')} · {episode.type}</p>
           <h1>{episode.title}</h1>
-          <p className="pg-summary">{episode.summary}</p>
+          {episode.pattern && <p className="pg-pattern"><span>Pattern</span>{episode.pattern}</p>}
           <ul className="pg-chips">
             {episode.concepts.map((c) => <li key={c}>{c}</li>)}
           </ul>
-          {episode.tour && (
-            <button className="pg-tour-btn" onClick={startTour}>▶ Take the guided tour <span>{episode.tour.length} quick steps</span></button>
-          )}
           {episode.interview && (
             <a className="pg-iv-teaser" href="#interview">
               <span className="pg-iv-teaser-tag">Interview question</span>
               <span className="pg-iv-teaser-q">{episode.interview.question}</span>
-              <span className="pg-iv-teaser-link">Read the model answer ↓</span>
+              <span className="pg-iv-teaser-link">Model answer ↓</span>
             </a>
           )}
         </div>
@@ -149,13 +187,7 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
       <main className="pg-wrap pg-grid">
         <div className="pg-stage">{children}</div>
         <aside className="pg-side">
-          {episode.tour ? (
-            <section className="pg-card pg-tour-card">
-              <p className="pg-eyebrow">New here?</p>
-              <p>Let the playground show you around: click, watch, learn.</p>
-              <button className="pg-btn pg-btn-teal" onClick={startTour}>▶ Take the guided tour</button>
-            </section>
-          ) : (
+          {!episode.tour && (
             <section className="pg-card">
               <p className="pg-eyebrow">How to play</p>
               <ol className="pg-steps">
@@ -164,15 +196,16 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
             </section>
           )}
           <section className="pg-card pg-challenge">
-            <p className="pg-eyebrow pg-eyebrow-saffron">{episode.challenges ? 'Challenges' : 'Your challenge'}</p>
+            <p className="pg-eyebrow pg-eyebrow-saffron">Challenges</p>
             {episode.challenges ? (
-              <ol className="pg-challenges">
+              <ul className="pg-challenges">
                 {episode.challenges.map((c) => (
-                  <li key={c.text}><span className={`pg-level pg-level-${c.level.toLowerCase().replace(/[^a-z]/g, '')}`}>{c.level}</span><span>{c.text}</span></li>
+                  <li key={c.text}><span className={`pg-level pg-level-${c.level.toLowerCase().replace(/[^a-z]/g, '')}`}>{c.level}</span><span>{brief(c.text)}</span></li>
                 ))}
-              </ol>
-            ) : <p>{episode.challenge}</p>}
-            <p className="pg-challenge-hint">Edit the code in StackBlitz: the app reloads as you type.</p>
+              </ul>
+            ) : episode.challenge ? <p className="pg-challenge-one">{brief(episode.challenge)}</p> : null}
+            <p className="pg-challenge-pitch">Your repo · reviewed · leaderboard</p>
+            <a className="pg-btn pg-btn-saffron pg-btn-live" href={challengesLink(episode.slug)} target="_blank" rel="noreferrer">Take the challenges →</a>
           </section>
           <CourseAd episode={episode} />
         </aside>

@@ -21,9 +21,7 @@ The **Reconciliation log** under the list counts what React really did to the DO
 
 ## Your challenges
 
-- **Warm-up:** with `key={index}`, add a product at the *end* of the list and type notes. Why does the bug not appear? When is an index key actually fine?
-- **Core:** strip the ids from the products. Build a key without an id that still survives sorting and deleting, then explain why `Math.random()` and the index both fail that test.
-- **Stretch:** add a `<ProductForm key={selected.id}>` editor that resets when you pick another product, without any `useEffect`. Then remove the key and watch the form go stale.
+This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/08-keys-in-lists&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=08-keys-in-lists): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
 
 ## Where to look
 

@@ -6,7 +6,7 @@
 
 ## What you'll see
 
-| | Junior · useEffect | Senior · loader |
+| | Trap · useEffect | Pattern · loader |
 |---|---|---|
 | When the request starts | After the first, empty render | The moment the user clicks |
 | Nested data (product, then reviews) | One after another: a **waterfall** | In parallel |
@@ -16,14 +16,14 @@
 
 ## How to play
 
-1. Keep **Junior · useEffect** selected and open a product. The timeline shows two requests, one after the other.
-2. Switch to **Senior · loader** and open the same product. Both requests start at the click.
-3. Open a product and click **All products** before it loads. Only the senior version cancels.
+1. Keep **Trap · useEffect** selected and open a product. The timeline shows two requests, one after the other.
+2. Switch to **Pattern · loader** and open the same product. Both requests start at the click.
+3. Open a product and click **All products** before it loads. Only the loader version cancels.
 4. Open **A product that doesn't exist** in both modes to compare error handling.
 
-## Your challenge
+## Your challenges
 
-Add a third request, `GET /products/:id/related`, as another nested route with its own loader. Confirm in the timeline that the total time stays the same in senior mode. Then add it to the junior version and watch the waterfall grow.
+This example comes with three challenges (warm-up, core and stretch). Take them in the [learning portal](https://www.deeshatechacademy.com/learn?next=/learn/playground/19-loaders-vs-useeffect&utm_source=github&utm_medium=challenges&utm_campaign=react-series&utm_content=19-loaders-vs-useeffect): commit your solution to your own repository, get it reviewed, and climb the leaderboard.
 
 ## Where to look
 

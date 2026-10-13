@@ -33,9 +33,9 @@ function KeysDemo() {
         <div className="demo-head">
           <span className="stage-tag">1 · Try it</span>
           <div className="seg" role="group" aria-label="Key">
-            <button aria-pressed={mode === 'index'} onClick={() => switchMode('index')}>Buggy<span className="seg-key"> · {KEY_LABEL.index}</span></button>
-            <button className="seg-good" aria-pressed={mode === 'id'} onClick={() => switchMode('id')}>Fixed<span className="seg-key"> · {KEY_LABEL.id}</span></button>
-            <button aria-pressed={mode === 'random'} onClick={() => switchMode('random')}>Worse<span className="seg-key"> · {KEY_LABEL.random}</span></button>
+            <button aria-pressed={mode === 'index'} onClick={() => switchMode('index')}>Trap<span className="seg-key"> · {KEY_LABEL.index}</span><span className="seg-key-short"> · index</span></button>
+            <button className="seg-good" aria-pressed={mode === 'id'} onClick={() => switchMode('id')}>Pattern<span className="seg-key"> · {KEY_LABEL.id}</span><span className="seg-key-short"> · id</span></button>
+            <button aria-pressed={mode === 'random'} onClick={() => switchMode('random')}>Double trap<span className="seg-key"> · {KEY_LABEL.random}</span><span className="seg-key-short"> · random</span></button>
           </div>
         </div>
         <div className="demo-body">
@@ -47,7 +47,7 @@ function KeysDemo() {
 
       <ReconcileLog />
       <CodePeek
-        title={mode === 'index' ? 'Buggy: the key is the position' : mode === 'id' ? 'Fixed: the key is the product' : 'Worse: a new key every render'}
+        title={mode === 'index' ? 'Trap: the key is the position' : mode === 'id' ? 'Pattern: the key is the product' : 'Double trap: a new key every render'}
         file="src/KeyedList.tsx"
         code={mode === 'index' ? INDEX_CODE : mode === 'id' ? ID_CODE : RANDOM_CODE}
       />

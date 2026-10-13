@@ -8,12 +8,12 @@ import { timeline } from './shell/timeline';
 import { EPISODE } from './episode';
 import { PRODUCTS } from './data';
 import { network } from './api';
-import { JuniorProductPage } from './junior/JuniorProductPage';
-import { productLoader, reviewsLoader, SeniorProductError, SeniorProductPage, SeniorReviews } from './senior/routes';
-import { JUNIOR_CODE, SENIOR_CODE } from './code';
+import { EffectProductPage } from './junior/JuniorProductPage';
+import { productLoader, reviewsLoader, LoaderProductError, LoaderProductPage, LoaderReviews } from './senior/routes';
+import { EFFECT_CODE, LOADER_CODE } from './code';
 import './demo.css';
 
-type Mode = 'junior' | 'senior';
+type Mode = 'effect' | 'loader';
 
 const router = createBrowserRouter([
   {
@@ -22,15 +22,15 @@ const router = createBrowserRouter([
     HydrateFallback: () => null,
     children: [
       { index: true, Component: ProductList },
-      // JUNIOR: no loader. The component fetches its own data in useEffect.
-      { path: 'junior/products/:productId', Component: JuniorProductPage },
-      // SENIOR: the route owns the data. Parent and nested loaders run in parallel.
+      // TRAP: no loader. The component fetches its own data in useEffect.
+      { path: 'effect/products/:productId', Component: EffectProductPage },
+      // PATTERN: the route owns the data. Parent and nested loaders run in parallel.
       {
-        path: 'senior/products/:productId',
+        path: 'loader/products/:productId',
         loader: productLoader,
-        Component: SeniorProductPage,
-        ErrorBoundary: SeniorProductError,
-        children: [{ index: true, loader: reviewsLoader, Component: SeniorReviews }],
+        Component: LoaderProductPage,
+        ErrorBoundary: LoaderProductError,
+        children: [{ index: true, loader: reviewsLoader, Component: LoaderReviews }],
       },
     ],
   },
@@ -45,8 +45,8 @@ export function App() {
 }
 
 function modeFromPath(pathname: string): Mode | null {
-  if (pathname.startsWith('/junior')) return 'junior';
-  if (pathname.startsWith('/senior')) return 'senior';
+  if (pathname.startsWith('/effect')) return 'effect';
+  if (pathname.startsWith('/loader')) return 'loader';
   return null;
 }
 
@@ -55,7 +55,7 @@ function DemoLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const [chosen, setChosen] = useState<Mode>(() => modeFromPath(location.pathname) ?? 'junior');
+  const [chosen, setChosen] = useState<Mode>(() => modeFromPath(location.pathname) ?? 'effect');
   const mode = modeFromPath(location.pathname) ?? chosen;
   const [speed, setSpeed] = useState(network.speed);
   const productPath = location.pathname.match(/products\/[^/]+/)?.[0];
@@ -79,8 +79,8 @@ function DemoLayout() {
         <div className="demo-head">
           <span className="stage-tag">1 · Try it</span>
           <div className="seg" role="group" aria-label="Data loading approach">
-            <button aria-pressed={mode === 'junior'} onClick={() => switchMode('junior')}>Junior · useEffect</button>
-            <button className="seg-good" aria-pressed={mode === 'senior'} onClick={() => switchMode('senior')}>Senior · loader</button>
+            <button aria-pressed={mode === 'effect'} onClick={() => switchMode('effect')}>Trap · useEffect</button>
+            <button className="seg-good" aria-pressed={mode === 'loader'} onClick={() => switchMode('loader')}>Pattern · loader</button>
           </div>
           <div className="demo-tools">
             <label className="muted">
@@ -104,16 +104,16 @@ function DemoLayout() {
           <div className="browser-page">
             {/* Also shown while a navigation is pending, so you can leave mid-load and watch the loaders get cancelled */}
             {(location.pathname !== '/' || navigation.state !== 'idle') && <Link className="back" to="/">← All products</Link>}
-            {/* key: replaying the same URL remounts the junior page, like a fresh visit */}
+            {/* key: replaying the same URL remounts the useEffect page, like a fresh visit */}
             <div key={location.key}><Outlet context={mode} /></div>
           </div>
         </div>
-        {mode === 'senior' && (
+        {mode === 'loader' && (
           <p className="demo-note">
             Notice the old page stays on screen while the loaders run, with a progress bar on top. That's <code>useNavigation()</code>. Then the page appears complete, in one go.
           </p>
         )}
-        {mode === 'junior' && (
+        {mode === 'effect' && (
           <p className="demo-note">
             The page appears instantly, but empty. Each part then fetches for itself, so the reviews wait for the product. That staircase in the timeline is a <strong>request waterfall</strong>.
           </p>
@@ -121,7 +121,7 @@ function DemoLayout() {
       </section>
 
       <RequestTimeline />
-      <CodePeek title={mode === 'junior' ? 'Junior: fetching in useEffect' : 'Senior: a route loader'} file={mode === 'junior' ? 'src/junior/JuniorProductPage.tsx' : 'src/senior/routes.tsx'} code={mode === 'junior' ? JUNIOR_CODE : SENIOR_CODE} />
+      <CodePeek title={mode === 'effect' ? 'Trap: fetching in useEffect' : 'Pattern: a route loader'} file={mode === 'effect' ? 'src/junior/JuniorProductPage.tsx' : 'src/senior/routes.tsx'} code={mode === 'effect' ? EFFECT_CODE : LOADER_CODE} />
     </div>
   );
 }

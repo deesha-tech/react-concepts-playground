@@ -49,14 +49,24 @@
   </tr>
 </table>
 
+## 🧩 Patterns we demo
+
+Every example shows a **Trap** (the code that looks fine but breaks) and a **Pattern** (the fix you can reuse). The list grows with the series, and the **All examples** menu in every example shows the whole series, with upcoming episodes muted.
+
+| Pattern | The trap | The pattern | Example |
+|---|---|---|---|
+| Abort stale requests | A fetch per keystroke with no cleanup: a slow, old response overwrites the latest results | `AbortController` in the effect cleanup, plus an optional debounce | [Ep 01](examples/01-race-conditions) |
+| Stable identity keys | `key={index}`: state stays with the position, not the item | `key={item.id}`, an id created with the item, never during render | [Ep 08](examples/08-keys-in-lists) |
+| Route loaders for page data | Fetching in `useEffect`: render first, then a request waterfall | A route `loader` + `useLoaderData`: parallel, cancellable, with an error boundary | [Ep 19](examples/19-loaders-vs-useeffect) |
+
 ## ▶️ How to play with an example in StackBlitz
 
 No installs and no setup. Everything runs in your browser.
 
 1. **Click "Open in StackBlitz"** next to an example. StackBlitz loads the project and runs `npm install` for you. The first load takes a minute.
 2. **The app opens on the right, the code on the left.** The file that matters most for the concept opens automatically.
-3. **Follow the guided tour.** It starts on your first visit and walks you through the demo step by step: click here, type this, watch that. Restart it any time with **Take the guided tour**.
-4. **Play with the demo yourself.** Use the toggle to switch between the problem and the fix, and watch the **network and render timeline** show every request and render as it happens.
+3. **Follow the guided tour.** It starts on your first visit and walks you through the demo step by step: click here, type this, watch that. Restart it any time with the **Guided tour** button at the bottom right.
+4. **Play with the demo yourself.** Use the toggle to switch between the **Trap** and the **Pattern**, and watch the **network and render timeline** show every request and render as it happens.
 5. **Read the highlighted code** under the demo: these are the lines that make the difference.
 6. **Take a challenge** from the sidebar: Warm-up, Core or Stretch. Edit the code on the left; the app reloads as you type.
 7. **Read the interview question** at the bottom: a model answer, a 30-second version and the follow-ups interviewers ask.

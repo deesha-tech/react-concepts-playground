@@ -7,7 +7,7 @@ import { getProduct, getReviews, type Product, type Review } from '../api';
 import { useRenderMark } from '../useRenderMark';
 import { Loading, Problem, ProductView, ReviewList } from '../ui';
 
-export function JuniorProductPage() {
+export function EffectProductPage() {
   const { productId = '' } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,12 +32,12 @@ export function JuniorProductPage() {
   return (
     <ProductView product={product}>
       {/* Mounts only now, so its request starts only now */}
-      <JuniorReviews productId={productId} />
+      <EffectReviews productId={productId} />
     </ProductView>
   );
 }
 
-function JuniorReviews({ productId }: { productId: string }) {
+function EffectReviews({ productId }: { productId: string }) {
   const [reviews, setReviews] = useState<Review[] | null>(null);
 
   useEffect(() => {

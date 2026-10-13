@@ -26,6 +26,11 @@ export function tracked(path: string, episodeSlug: string, medium = 'playground'
   return url.toString();
 }
 
+/** The learner portal page for this example's challenges: sign in, take the challenges, commit to "My repository". */
+export function challengesLink(episodeSlug: string): string {
+  return tracked(`/learn?next=/learn/playground/${episodeSlug}`, episodeSlug, 'challenges');
+}
+
 export function whatsappLink(message: string): string {
   return `https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(message)}`;
 }

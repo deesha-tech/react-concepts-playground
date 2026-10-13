@@ -45,4 +45,6 @@ export interface Episode {
   };
   /** The episode video, once published (the menu hides it while empty) */
   videoUrl?: string;
+  /** The named pattern this episode teaches, e.g. "Abort stale requests". Shown under the title and listed in the README. */
+  pattern?: string;
 }
