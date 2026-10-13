@@ -29,7 +29,7 @@ export function GuidedTour({ slug, steps }: { slug: string; steps: TourStep[] })
   );
 
   const close = useCallback(() => { setI(null); markSeen(slug); }, [slug]);
-  const next = useCallback(() => setI((n) => (n === null ? null : n + 1 >= steps.length ? (markSeen(slug), null) : n + 1)), [slug, steps.length]);
+  const next = useCallback(() => setI((n) => (n === null ? null : n + 1 >= steps.length ? (markSeen(slug), window.dispatchEvent(new Event('pg-tour-done')), null) : n + 1)), [slug, steps.length]);
   const back = useCallback(() => setI((n) => (n === null || n === 0 ? n : n - 1)), []);
 
   // Start automatically on the first visit (never in video-capture mode), or when asked to.

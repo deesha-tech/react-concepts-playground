@@ -46,6 +46,8 @@ export interface Episode {
   };
   /** The episode video, once published (the menu hides it while empty) */
   videoUrl?: string;
+  /** 'drawer': no sidebar; the challenges open in a drawer (after the tour, or from a pill). Default: 'sidebar'. */
+  layout?: 'sidebar' | 'drawer';
   /** The named pattern this episode teaches, e.g. "Abort stale requests". Shown under the title and listed in the README. */
   pattern?: string;
 }

@@ -4,6 +4,7 @@ import type { Episode } from './types';
 import { installCapture } from './capture';
 import { grouped, isLive, stackblitzUrl } from './episodes';
 import { GuidedTour } from './GuidedTour';
+import { ChallengeDrawer } from './ChallengeDrawer';
 import logoLight from './logo-light.png';
 import './shell.css';
 
@@ -93,9 +94,16 @@ function TopBar({ episode }: { episode: Episode }) {
             <div className="pg-menu-panel">{courseLinks}</div>
           </details>
         </nav>
-        <a className="pg-cta" href={tracked(FEATURED_COURSE.path, episode.slug, 'topbar')} target="_blank" rel="noreferrer">
-          Learn React live
-        </a>
+        {episode.layout === 'drawer' ? (
+          <a className="pg-cta pg-cta-rich" href={tracked(FEATURED_COURSE.path, episode.slug, 'topbar')} target="_blank" rel="noreferrer">
+            <span className="pg-cta-title">{FEATURED_COURSE.title}</span>
+            <span className="pg-cta-sub">{Date.now() < new Date(FEATURED_COURSE.nextBatch.until).getTime() ? FEATURED_COURSE.nextBatch.label.replace(/^Next live batch starts /, 'Next batch ').replace(/ · Online$/, '') : 'Live sessions, with an expert'}</span>
+          </a>
+        ) : (
+          <a className="pg-cta" href={tracked(FEATURED_COURSE.path, episode.slug, 'topbar')} target="_blank" rel="noreferrer">
+            Learn React live
+          </a>
+        )}
         <details className="pg-menu pg-mobile" ref={mobile}>
           <summary aria-label="Menu">Menu</summary>
           <div className="pg-menu-panel">
@@ -163,7 +171,7 @@ function InterviewBand({ episode }: { episode: Episode }) {
 export function PlaygroundShell({ episode, children }: { episode: Episode; children: ReactNode }) {
   useEffect(() => { installCapture(); }, []);
   return (
-    <div className="pg">
+    <div className={`pg${episode.layout === 'drawer' ? ' pg-has-drawer' : ''}`}>
       <TopBar episode={episode} />
 
       <section className="pg-hero">
@@ -184,9 +192,9 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
         </div>
       </section>
 
-      <main className="pg-wrap pg-grid">
+      <main className={`pg-wrap pg-grid${episode.layout === 'drawer' ? ' pg-grid-solo' : ''}`}>
         <div className="pg-stage">{children}</div>
-        <aside className="pg-side">
+        {episode.layout !== 'drawer' && <aside className="pg-side">
           {!episode.tour && (
             <section className="pg-card">
               <p className="pg-eyebrow">How to play</p>
@@ -208,8 +216,9 @@ export function PlaygroundShell({ episode, children }: { episode: Episode; child
             <a className="pg-btn pg-btn-saffron pg-btn-live" href={challengesLink(episode.slug)} target="_blank" rel="noreferrer">Take the challenges →</a>
           </section>
           <CourseAd episode={episode} />
-        </aside>
+        </aside>}
       </main>
+      {episode.layout === 'drawer' && <ChallengeDrawer episode={episode} />}
 
       <InterviewBand episode={episode} />
       {episode.tour && <GuidedTour slug={episode.slug} steps={episode.tour} />}
