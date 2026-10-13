@@ -11,9 +11,9 @@ import { pathToFileURL } from 'node:url';
 
 const root = path.resolve(import.meta.dirname, '..');
 const check = process.argv.includes('--check');
-const anyExample = fs.readdirSync(path.join(root, 'examples')).find((d) => fs.existsSync(path.join(root, 'examples', d, 'node_modules/typescript')));
-if (!anyExample) { console.error('Run npm install inside one example first (TypeScript is needed to read the episode files).'); process.exit(1); }
-const ts = createRequire(import.meta.url)(path.join(root, 'examples', anyExample, 'node_modules/typescript'));
+const tsDir = [path.join(root, 'node_modules/typescript'), ...fs.readdirSync(path.join(root, 'examples')).map((d) => path.join(root, 'examples', d, 'node_modules/typescript'))].find((d) => fs.existsSync(d));
+if (!tsDir) { console.error('Run `npm install` here first (TypeScript is needed to read the episode files).'); process.exit(1); }
+const ts = createRequire(import.meta.url)(tsDir);
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'playground-json-'));
 
 async function load(file, name) {
