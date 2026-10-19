@@ -45,7 +45,12 @@
       <p>Type a note on a product, delete the row above it, and the note jumps to the wrong product. Watch what React really does to the DOM with key={index}, key={product.id} and key={Math.random()}.</p>
       <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/08-keys-in-lists?file=src/KeyedList.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
     </td>
-    <td width="50%" valign="top"></td>
+    <td width="50%" valign="top">
+      <a href="examples/36-trigger-render-commit"><img src="docs/ep36-trigger-render-commit.png" alt="Ep 36 · Trigger → Render → Commit"></a>
+      <h3>Ep 36 · Trigger → Render → Commit</h3>
+      <p>Type one letter: React calls 7 components, and the page changes in just 1 place. Fire a keystroke, a click, a server reply or a timer and watch the trigger, the render and the commit, live.</p>
+      <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/36-trigger-render-commit?file=src/Helpdesk.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
+    </td>
   </tr>
 </table>
 
@@ -58,6 +63,7 @@ Every example shows a **Trap** (the code that looks fine but breaks) and a **Pat
 | Abort stale requests | A fetch per keystroke with no cleanup: a slow, old response overwrites the latest results | `AbortController` in the effect cleanup, plus an optional debounce | [Ep 01](examples/01-race-conditions) |
 | Stable identity keys | `key={index}`: state stays with the position, not the item | `key={item.id}`, an id created with the item, never during render | [Ep 08](examples/08-keys-in-lists) |
 | Route loaders for page data | Fetching in `useEffect`: render first, then a request waterfall | A route `loader` + `useLoaderData`: parallel, cancellable, with an error boundary | [Ep 19](examples/19-loaders-vs-useeffect) |
+| Render is a function call; commit is the DOM | "It re-rendered, so it repainted": treating every render as expensive | A setter triggers a render; React compares and commits only the differences, so measure the commit, not the render count | [Ep 36](examples/36-trigger-render-commit) |
 
 ## ▶️ How to play with an example in StackBlitz
 
@@ -108,6 +114,13 @@ New examples arrive with each episode. Follow along on Instagram and YouTube so 
 | 28 | Modals with Portals | Portals, z-index and overflow, explained | 🔜 Coming soon |
 | 29 | React 19 Actions | Actions, useActionState and pending states | 🔜 Coming soon |
 | 30 | What to Test in React | Test what users see, with React Testing Library | 🔜 Coming soon |
+| 31 | Why Did It Re-render? | What actually triggers a re-render | 🔜 Coming soon |
+| 32 | Copying Props into State | Why useState(props.x) goes stale | 🔜 Coming soon |
+| 33 | useRef vs useState | When a value should not re-render | 🔜 Coming soon |
+| 34 | A 2 MB Bundle on Mobile | Lazy routes and code splitting | 🔜 Coming soon |
+| 35 | Where Does This State Live? | 3 features, 3 state decisions, 1 trap | 🔜 Coming soon |
+| **36** | **[Trigger → Render → Commit](examples/36-trigger-render-commit)** | **React's 3 phases, in one keystroke** | ✅ **[Open in StackBlitz](https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/36-trigger-render-commit?file=src/Helpdesk.tsx)** |
+| 37 | Rendered, But Nothing Changed | State is a snapshot: what really happens when you call set | 🔜 Coming soon |
 
 ## What every example includes
 

@@ -1,0 +1,24 @@
+{
+  "name": "deesha-36-trigger-render-commit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "React Concepts Playground · Ep 36 · Trigger, Render, Commit, by Deesha Tech Academy",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "5.9.3",
+    "vite": "8.3.0"
+  }
+}

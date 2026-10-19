@@ -330,6 +330,56 @@
       "title": "A 2 MB Bundle on Mobile",
       "category": "Rendering & performance",
       "live": false
+    },
+    {
+      "n": 35,
+      "slug": "35-where-does-state-live",
+      "title": "Where Does This State Live?",
+      "category": "State & forms",
+      "live": false
+    },
+    {
+      "n": 36,
+      "slug": "36-trigger-render-commit",
+      "title": "Trigger → Render → Commit",
+      "category": "Rendering & performance",
+      "live": true,
+      "pattern": "Render is a function call; commit is the DOM",
+      "type": "React Concept",
+      "summary": "Everyone says \"React re-renders\"… but what actually happens between typing a letter and your screen updating? A keystroke, a click, a server reply and a timer all go through the same three steps. Fire each one and watch which components React calls, and what really changes on the page.",
+      "concepts": [
+        "Trigger",
+        "Render phase",
+        "Reconciliation",
+        "Commit phase",
+        "Batching",
+        "Pure components"
+      ],
+      "stackblitz": "https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/36-trigger-render-commit?file=src/Helpdesk.tsx",
+      "github": "https://github.com/deesha-tech/react-concepts-playground/tree/main/examples/36-trigger-render-commit",
+      "challenges": [
+        {
+          "level": "Warm-up",
+          "text": "Press \"Server reply\". It calls two setters, setTickets and setSyncedAgo, yet the render lane shows one pass. Explain why, then make it render twice on purpose and say what that costs."
+        },
+        {
+          "level": "Core",
+          "text": "Move the selected filter out of App and into the components that need it so that clicking Open no longer renders Header. Count the renders before and after, and explain what you traded."
+        },
+        {
+          "level": "Stretch",
+          "text": "Add a component that writes to document.title during render. Turn on StrictMode, watch it misbehave, then move the write to the right place and explain why render must stay pure."
+        }
+      ],
+      "interviewQuestion": "What happens in React between a user clicking a button that calls setState and the screen updating?",
+      "videoUrl": null
+    },
+    {
+      "n": 37,
+      "slug": "37-render-is-not-paint",
+      "title": "Rendered, But Nothing Changed",
+      "category": "Rendering & performance",
+      "live": false
     }
   ]
 }

@@ -42,6 +42,9 @@ export const EPISODES: SeriesEpisode[] = [
   { n: 32, slug: '32-props-into-state', title: 'Copying Props into State', category: 'State & forms' },
   { n: 33, slug: '33-useref-vs-usestate', title: 'useRef vs useState', category: 'Hooks & effects' },
   { n: 34, slug: '34-code-splitting', title: 'A 2 MB Bundle on Mobile', category: 'Rendering & performance' },
+  { n: 35, slug: '35-where-does-state-live', title: 'Where Does This State Live?', category: 'State & forms' },
+  { n: 36, slug: '36-trigger-render-commit', title: 'Trigger → Render → Commit', category: 'Rendering & performance', pattern: 'Render is a function call; commit is the DOM', file: 'src/Helpdesk.tsx' },
+  { n: 37, slug: '37-render-is-not-paint', title: 'Rendered, But Nothing Changed', category: 'Rendering & performance' },
 ];
 
 export const isLive = (ep: SeriesEpisode): boolean => Boolean(ep.file);
