@@ -36,7 +36,7 @@ export const EPISODES: SeriesEpisode[] = [
   { n: 26, slug: '26-zustand-vs-redux', title: 'Zustand vs Redux Toolkit', category: 'State & forms' },
   { n: 27, slug: '27-compound-components', title: 'Compound Components', category: 'UI, routing & testing' },
   { n: 28, slug: '28-portals-modals', title: 'Modals with Portals', category: 'UI, routing & testing' },
-  { n: 29, slug: '29-react19-actions', title: 'React 19 Actions', category: 'State & forms' },
+  { n: 29, slug: '29-react19-actions', title: 'React 19 Actions', category: 'State & forms', pattern: 'Form actions', file: 'src/ActionForm.tsx' },
   { n: 30, slug: '30-testing-what-to-test', title: 'What to Test in React', category: 'UI, routing & testing' },
   { n: 31, slug: '31-why-did-it-rerender', title: 'Why Did It Re-render?', category: 'Rendering & performance' },
   { n: 32, slug: '32-props-into-state', title: 'Copying Props into State', category: 'State & forms' },

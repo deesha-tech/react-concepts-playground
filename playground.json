@@ -294,7 +294,35 @@
       "slug": "29-react19-actions",
       "title": "React 19 Actions",
       "category": "State & forms",
-      "live": false
+      "live": true,
+      "pattern": "Form actions",
+      "type": "React Concept",
+      "summary": "Post a review the React 18 way: four useStates, a try/catch/finally, and a button that posts twice when you double click. Then let React 19 run the submit as an Action: pending, errors and the form reset are handled for you, and useOptimistic shows the review before the server answers.",
+      "concepts": [
+        "Actions",
+        "useActionState",
+        "useFormStatus",
+        "useOptimistic",
+        "Form reset"
+      ],
+      "stackblitz": "https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/29-react19-actions?file=src/ActionForm.tsx",
+      "github": "https://github.com/deesha-tech/react-concepts-playground/tree/main/examples/29-react19-actions",
+      "challenges": [
+        {
+          "level": "Warm-up",
+          "text": "In the Trap version, fix the double submit and the stale error with the least code you can. Count the lines you added, then compare with the Pattern version."
+        },
+        {
+          "level": "Core",
+          "text": "Add a \"Clear\" button inside the Pattern form that is disabled while the review is posting, using useFormStatus and no props."
+        },
+        {
+          "level": "Stretch",
+          "text": "Add a star rating summary above the reviews that updates optimistically in the Bonus version, and rolls back on its own when a review is rejected."
+        }
+      ],
+      "interviewQuestion": "What are Actions in React 19, and what do useActionState and useFormStatus give you over a classic onSubmit handler?",
+      "videoUrl": null
     },
     {
       "n": 30,

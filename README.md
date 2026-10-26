@@ -52,6 +52,15 @@
       <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/36-trigger-render-commit?file=src/Helpdesk.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="examples/29-react19-actions"><img src="docs/ep29-react19-actions.png" alt="Ep 29 · React 19 Actions"></a>
+      <h3>Ep 29 · React 19 Actions</h3>
+      <p>Double click "Post review" and it posts twice, and an old error never clears. Then let React 19 run the submit as an Action: pending, errors and the form reset handled for you, and useOptimistic shows the review before the server answers.</p>
+      <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/29-react19-actions?file=src/ActionForm.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
+    </td>
+    <td width="50%" valign="top"></td>
+  </tr>
 </table>
 
 ## 🧩 Patterns we demo
@@ -63,6 +72,7 @@ Every example shows a **Trap** (the code that looks fine but breaks) and a **Pat
 | Abort stale requests | A fetch per keystroke with no cleanup: a slow, old response overwrites the latest results | `AbortController` in the effect cleanup, plus an optional debounce | [Ep 01](examples/01-race-conditions) |
 | Stable identity keys | `key={index}`: state stays with the position, not the item | `key={item.id}`, an id created with the item, never during render | [Ep 08](examples/08-keys-in-lists) |
 | Route loaders for page data | Fetching in `useEffect`: render first, then a request waterfall | A route `loader` + `useLoaderData`: parallel, cancellable, with an error boundary | [Ep 19](examples/19-loaders-vs-useeffect) |
+| Form actions | `onSubmit` + useState for loading and error: the button posts twice, an old error never clears | `<form action>` with `useActionState`, `useFormStatus` on the button, `useOptimistic` for instant feedback | [Ep 29](examples/29-react19-actions) |
 | Render is a function call; commit is the DOM | "It re-rendered, so it repainted": treating every render as expensive | A setter triggers a render; React compares and commits only the differences, so measure the commit, not the render count | [Ep 36](examples/36-trigger-render-commit) |
 
 ## ▶️ How to play with an example in StackBlitz
@@ -112,7 +122,7 @@ New examples arrive with each episode. Follow along on Instagram and YouTube so 
 | 26 | Zustand vs Redux Toolkit | Same feature, two stores, when to pick which | 🔜 Coming soon |
 | 27 | Compound Components | The compound component pattern | 🔜 Coming soon |
 | 28 | Modals with Portals | Portals, z-index and overflow, explained | 🔜 Coming soon |
-| 29 | React 19 Actions | Actions, useActionState and pending states | 🔜 Coming soon |
+| **29** | **[React 19 Actions](examples/29-react19-actions)** | **Actions, useActionState and pending states** | ✅ **[Open in StackBlitz](https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/29-react19-actions?file=src/ActionForm.tsx)** |
 | 30 | What to Test in React | Test what users see, with React Testing Library | 🔜 Coming soon |
 | 31 | Why Did It Re-render? | What actually triggers a re-render | 🔜 Coming soon |
 | 32 | Copying Props into State | Why useState(props.x) goes stale | 🔜 Coming soon |
