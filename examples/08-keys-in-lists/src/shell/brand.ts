@@ -44,7 +44,7 @@ export const FEATURED_COURSE = {
   path: '/academy/courses/react-application-development',
   cta: 'See the course',
   // Shown only until `until`, so stale batch dates never appear.
-  nextBatch: { label: 'Next live batch starts Mon 12 Oct · 10 PM IST · Online', until: '2026-10-12T22:00:00+05:30' },
+  nextBatch: { label: 'Next live batch starts Mon 30 Nov · Online', until: '2026-11-30T23:59:00+05:30' },
   whatsappMessage: "Hi, I saw the React Concepts Playground and I'd like to know about the React Application Development course.",
 };
 
