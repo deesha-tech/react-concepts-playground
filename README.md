@@ -59,7 +59,12 @@
       <p>Double click "Post review" and it posts twice, and an old error never clears. Then let React 19 run the submit as an Action: pending, errors and the form reset handled for you, and useOptimistic shows the review before the server answers.</p>
       <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/29-react19-actions?file=src/ActionForm.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
     </td>
-    <td width="50%" valign="top"></td>
+    <td width="50%" valign="top">
+      <a href="examples/38-use-hook-suspense"><img src="docs/ep38-use-hook-suspense.png" alt="Ep 38 · Goodbye useEffect Fetching"></a>
+      <h3>Ep 38 · Goodbye useEffect Fetching</h3>
+      <p>Load a product with useEffect and the page renders empty before the request even starts. Read it with React 19 use() and Suspense instead: no loading or error state. Then watch the one mistake that makes use() fetch forever.</p>
+      <p><a href="https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/38-use-hook-suspense?file=src/UseProduct.tsx"><img src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg" alt="Open in StackBlitz"></a></p>
+    </td>
   </tr>
 </table>
 
@@ -72,6 +77,7 @@ Every example shows a **Trap** (the code that looks fine but breaks) and a **Pat
 | Abort stale requests | A fetch per keystroke with no cleanup: a slow, old response overwrites the latest results | `AbortController` in the effect cleanup, plus an optional debounce | [Ep 01](examples/01-race-conditions) |
 | Stable identity keys | `key={index}`: state stays with the position, not the item | `key={item.id}`, an id created with the item, never during render | [Ep 08](examples/08-keys-in-lists) |
 | Route loaders for page data | Fetching in `useEffect`: render first, then a request waterfall | A route `loader` + `useLoaderData`: parallel, cancellable, with an error boundary | [Ep 19](examples/19-loaders-vs-useeffect) |
+| Read promises with use() | Fetching in `useEffect`: render empty first, then hand-written data, loading and error state | Create the promise outside render, read it with `use()`, wait with `<Suspense>`, catch with an error boundary; never create it inside the component | [Ep 38](examples/38-use-hook-suspense) |
 | Form actions | `onSubmit` + useState for loading and error: the button posts twice, an old error never clears | `<form action>` with `useActionState`, `useFormStatus` on the button, `useOptimistic` for instant feedback | [Ep 29](examples/29-react19-actions) |
 | Render is a function call; commit is the DOM | "It re-rendered, so it repainted": treating every render as expensive | A setter triggers a render; React compares and commits only the differences, so measure the commit, not the render count | [Ep 36](examples/36-trigger-render-commit) |
 
@@ -131,6 +137,7 @@ New examples arrive with each episode. Follow along on Instagram and YouTube so 
 | 35 | Where Does This State Live? | 3 features, 3 state decisions, 1 trap | 🔜 Coming soon |
 | **36** | **[Trigger → Render → Commit](examples/36-trigger-render-commit)** | **React's 3 phases, in one keystroke** | ✅ **[Open in StackBlitz](https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/36-trigger-render-commit?file=src/Helpdesk.tsx)** |
 | 37 | Rendered, But Nothing Changed | State is a snapshot: what really happens when you call set | 🔜 Coming soon |
+| **38** | **[Goodbye useEffect Fetching](examples/38-use-hook-suspense)** | **React 19 use() + Suspense, and the bug that loops forever** | ✅ **[Open in StackBlitz](https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/38-use-hook-suspense?file=src/UseProduct.tsx)** |
 
 ## What every example includes
 

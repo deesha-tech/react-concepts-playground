@@ -1,0 +1,26 @@
+/* Styles for this example. Brand chrome lives in shell/shell.css. */
+.demo-note { margin: 0; padding: .7rem 1rem; font-size: .88rem; border-top: 1px solid var(--rule); background: #fbfaf7; }
+.picker { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .9rem; }
+.pick[aria-pressed='true'] { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.pick-broken { border-style: dashed; }
+.slot { min-height: 168px; }
+
+/* The product page */
+.pv { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 1rem; align-items: start; padding: .9rem; border: 1px solid var(--rule); border-radius: 12px; background: var(--white); }
+.pv img { border-radius: 10px; background: var(--paper); object-fit: cover; }
+.pv-brand { margin: 0; font: 700 .7rem var(--font-display); letter-spacing: .12em; text-transform: uppercase; color: var(--teal-deep); }
+.pv h3 { margin: .15rem 0 .35rem; font-size: 1.15rem; color: var(--navy); }
+.pv-desc { margin: 0 0 .5rem; font-size: .86rem; color: var(--slate-strong); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pv-meta { margin: 0; font-size: .9rem; color: var(--navy); }
+
+/* Loading skeleton (your own spinner in the Trap, the Suspense fallback in the Pattern) */
+.pv-skeleton .pv-img { display: block; width: 120px; height: 120px; border-radius: 10px; }
+.pv-skeleton .pv-img, .pv-line { background: linear-gradient(90deg, #eee9df 0%, #f7f3ea 50%, #eee9df 100%); background-size: 200% 100%; animation: pv-shimmer 1.1s linear infinite; }
+.pv-line { display: block; height: .7rem; border-radius: 6px; margin: .2rem 0 .55rem; }
+.pv-line.w40 { width: 40%; } .pv-line.w60 { width: 60%; } .pv-line.w70 { width: 70%; } .pv-line.w90 { width: 90%; }
+.pv-wait { margin: .2rem 0 0; font: 600 .78rem var(--font-mono); color: var(--saffron-ink); }
+@keyframes pv-shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .pv-skeleton .pv-img, .pv-line { animation: none; } }
+
+.pv-error { display: grid; gap: .35rem; justify-items: start; padding: .9rem 1rem; border-radius: 12px; background: #fde8e3; color: #9b2c16; font-size: .88rem; }
+@media (max-width: 640px) { .seg-key { display: none; } .pv { grid-template-columns: 84px minmax(0, 1fr); } .pv img, .pv-skeleton .pv-img { width: 84px; height: 84px; } }

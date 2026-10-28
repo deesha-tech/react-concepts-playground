@@ -408,6 +408,41 @@
       "title": "Rendered, But Nothing Changed",
       "category": "Rendering & performance",
       "live": false
+    },
+    {
+      "n": 38,
+      "slug": "38-use-hook-suspense",
+      "title": "Goodbye useEffect Fetching",
+      "category": "Data fetching",
+      "live": true,
+      "pattern": "Read promises with use()",
+      "type": "React Concept",
+      "summary": "Load a product the classic way: useEffect plus useState for the data, the loading flag and the error, and the page renders empty before the request even starts. Then read it with React 19 use() and Suspense: no loading or error state, and the request starts at the click. Finally, the one mistake that makes use() fetch forever.",
+      "concepts": [
+        "use()",
+        "Suspense",
+        "Error boundaries",
+        "Promise caching",
+        "Fetch-on-render"
+      ],
+      "stackblitz": "https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/38-use-hook-suspense?file=src/UseProduct.tsx",
+      "github": "https://github.com/deesha-tech/react-concepts-playground/tree/main/examples/38-use-hook-suspense",
+      "challenges": [
+        {
+          "level": "Warm-up",
+          "text": "In the Trap version, remove the ignore flag and switch products quickly. What can go wrong, and why does use() not need that flag?"
+        },
+        {
+          "level": "Core",
+          "text": "Fix the Double trap without moving the call out of the component: cache one promise per product id in a Map, so every render of the same id gets the same promise."
+        },
+        {
+          "level": "Stretch",
+          "text": "Wrap the product switch in startTransition so the old product stays on screen while the new one loads, instead of falling back to the skeleton."
+        }
+      ],
+      "interviewQuestion": "What does the use() hook do in React 19, and why can't you create the promise inside the component that reads it?",
+      "videoUrl": null
     }
   ]
 }

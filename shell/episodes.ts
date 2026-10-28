@@ -44,6 +44,7 @@ export const EPISODES: SeriesEpisode[] = [
   { n: 35, slug: '35-where-does-state-live', title: 'Where Does This State Live?', category: 'State & forms' },
   { n: 36, slug: '36-trigger-render-commit', title: 'Trigger → Render → Commit', category: 'Rendering & performance', pattern: 'Render is a function call; commit is the DOM', file: 'src/Helpdesk.tsx' },
   { n: 37, slug: '37-render-is-not-paint', title: 'Rendered, But Nothing Changed', category: 'Rendering & performance' },
+  { n: 38, slug: '38-use-hook-suspense', title: 'Goodbye useEffect Fetching', category: 'Data fetching', pattern: 'Read promises with use()', file: 'src/UseProduct.tsx' },
 ];
 
 export const isLive = (ep: SeriesEpisode): boolean => Boolean(ep.file);
