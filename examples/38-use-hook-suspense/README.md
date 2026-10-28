@@ -1,6 +1,6 @@
 # Ep 38 · Goodbye useEffect Fetching
 
-**Fetch a product in `useEffect` and the page renders empty before the request even starts.** This example compares that with React 19's `use()` hook and `<Suspense>`, then shows the one mistake that makes `use()` fetch forever.
+**Fetch a product in `useEffect` and the page renders empty before the request even starts.** This example compares that with React 19's `use()` API and `<Suspense>`, then shows the one mistake that makes `use()` fetch forever.
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/deesha-tech/react-concepts-playground/tree/main/examples/38-use-hook-suspense?file=src/UseProduct.tsx)
 

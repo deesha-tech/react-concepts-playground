@@ -33,7 +33,7 @@ export const EPISODE: Episode = {
   ],
   challenge: 'Fix the Double trap without moving the call out of the component: cache one promise per product id in a Map.',
   interview: {
-    question: 'What does the use() hook do in React 19, and why can\'t you create the promise inside the component that reads it?',
+    question: 'What does the use() API do in React 19, and why can\'t you create the promise inside the component that reads it?',
     answer: [
       "use() reads the value of a promise (or a context) during render. If the promise is still pending, the component suspends and the nearest <Suspense> shows its fallback; when it resolves, React renders again and use() returns the value. If it rejects, the error is thrown to the nearest error boundary. So the component has no useState for data, loading or error, and no useEffect.",
       "Compared with fetching in useEffect, it changes when the request starts. With useEffect the component renders first, empty, and the request starts after that render, which is why nested components fetch one after another. With use(), the promise is created before or outside the render, usually in an event handler, a router loader or a cache, so the request starts at the click.",
@@ -48,7 +48,7 @@ export const EPISODE: Episode = {
       },
       {
         q: 'Can you call use() conditionally?',
-        a: "Yes. Unlike other hooks, use() can be called inside if statements and loops, because React tracks it by the promise or context you pass, not by call order. It still has to be called during render, not in an event handler or an effect.",
+        a: "Yes. use() isn't a hook, it's a React API function, so it can be called inside if statements and loops, because React tracks it by the promise or context you pass, not by call order. It still has to be called during render, not in an event handler or an effect.",
       },
       {
         q: 'Does use() replace React Query or SWR?',
